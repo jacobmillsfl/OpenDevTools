@@ -4,6 +4,7 @@
  * Date: 9/18/2017
  * Description: This file is the landing page for OpenDevTools
  */
+
 ?>
 
 
@@ -98,7 +99,33 @@
             <div class="carousel-item active" style="background-image: url('images/mountains.jpg')">
                 <div class="carousel-caption d-none d-md-block">
                     <h3>Coming Soon</h3>
-                    <p>This site is currently under construction</p>
+                        <?php
+                        // This is for local purposes only! In hosted environments the db_settings.php file should be outside of the webroot, such as: include("/outside-webroot/db_settings.php");
+                        include("DAL/db_localsettings.php");
+
+                        $conn = new mysqli($servername, $username, $password, $dbname);
+                        if ($conn->connect_error) {
+                            die("Connection failed: " . $conn->connect_error);
+                        }
+
+                        $sql = "SELECT * FROM Temp;";
+                        $result = $conn->query($sql);
+
+                        if (!$result) {
+                            echo "<p>" + $conn->error + "</p>";
+                            trigger_error('Invalid query: ' . $conn->error);
+                        }
+                        elseif ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                        ?>
+
+                        <p><?php echo $row['message']; ?></p>
+
+                        <?php
+                        }};
+                        ?>
+
+
                 </div>
             </div>
             <!-- Slide Two - Set the background image for this slide in the line below -->
