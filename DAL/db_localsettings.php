@@ -2,7 +2,7 @@
 /**
  * Author: Jacob Mills
  * Date: 9/18/2017
- * Description: This file is the landing page for OpenDevTools
+ * Description: This is a temporary file used for local development. This should not be used in production environments.
  */
 
 

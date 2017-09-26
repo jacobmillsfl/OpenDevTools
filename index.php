@@ -5,6 +5,10 @@
  * Description: This file is the landing page for OpenDevTools
  */
 
+
+
+include("DAL/SiteBanner.php");
+
 ?>
 
 
@@ -95,53 +99,27 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner" role="listbox">
-            <!-- Slide One - Set the background image for this slide in the line below -->
-            <div class="carousel-item active" style="background-image: url('images/mountains.jpg')">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3>Coming Soon</h3>
-                        <?php
-                        // This is for local purposes only! In hosted environments the db_settings.php file should be outside of the webroot, such as: include("/outside-webroot/db_settings.php");
-                        include("DAL/db_localsettings.php");
+            <?php
 
-                        $conn = new mysqli($servername, $username, $password, $dbname);
-                        if ($conn->connect_error) {
-                            die("Connection failed: " . $conn->connect_error);
-                        }
+            SiteBanner::remove(4);
+            SiteBanner::remove(5);
+            SiteBanner::remove(6);
 
-                        $sql = "SELECT * FROM Temp;";
-                        $result = $conn->query($sql);
+            $bannerList = SiteBanner::loadall();
+            $active = true;
+            foreach($bannerList as $banner)
+            {
 
-                        if (!$result) {
-                            echo "<p>" + $conn->error + "</p>";
-                            trigger_error('Invalid query: ' . $conn->error);
-                        }
-                        elseif ($result->num_rows > 0) {
-                        while($row = $result->fetch_assoc()) {
-                        ?>
+                echo "<div class=\"carousel-item" . ($active ? " active" : "") . "\" style=\"background-image: url('" . $banner->getImgUrl() . "')\">";
+                echo "<div class=\"carousel-caption d-none d-md-block\">";
+                echo "<h3>" . $banner->getTitle() . "</h3>";
+                echo "<p>" . $banner->getMessage() . "</p>";
+                echo "</div>";
+                echo "</div>";
+                $active = false;
+            }
 
-                        <p><?php echo $row['message']; ?></p>
-
-                        <?php
-                        }};
-                        ?>
-
-
-                </div>
-            </div>
-            <!-- Slide Two - Set the background image for this slide in the line below -->
-            <div class="carousel-item" style="background-image: url('images/forest.jpg')">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3>Coming Soon</h3>
-                    <p>This site is currently under construction</p>
-                </div>
-            </div>
-            <!-- Slide Three - Set the background image for this slide in the line below -->
-            <div class="carousel-item" style="background-image: url('images/liquidpulse.jpg')">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3>Coming Soon</h3>
-                    <p>This site is currently under construction</p>
-                </div>
-            </div>
+            ?>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
