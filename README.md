@@ -6,4 +6,4 @@ Jacob Mills
 Carla Pastor
 Rob Smitha
 Annie Liu
-Carlo Que
+Carlito Que
