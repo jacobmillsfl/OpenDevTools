@@ -101,10 +101,6 @@ include("DAL/SiteBanner.php");
         <div class="carousel-inner" role="listbox">
             <?php
 
-            SiteBanner::remove(4);
-            SiteBanner::remove(5);
-            SiteBanner::remove(6);
-
             $bannerList = SiteBanner::loadall();
             $active = true;
             foreach($bannerList as $banner)
