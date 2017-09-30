@@ -1,7 +1,7 @@
 # OpenDevTools
 Repo for the opendevtools web app
 
-##Our Team
+## Our Team
 Jacob Mills
 Carla Pastor
 Rob Smitha
