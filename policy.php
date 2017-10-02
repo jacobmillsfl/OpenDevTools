@@ -1,17 +1,3 @@
-<?php
-/**
- * Author: Jacob Mills
- * Date: 9/18/2017
- * Description: This file is the about page
- */
-
-
-
-include("DAL/SiteBanner.php");
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,14 +23,14 @@ include("DAL/SiteBanner.php");
 <!-- Navigation -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="index.php">Start Bootstrap</a>
+        <a class="navbar-brand" href="index.html">Start Bootstrap</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="about.php">About</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="services.html">Services</a>
@@ -74,12 +60,12 @@ include("DAL/SiteBanner.php");
                         <a class="dropdown-item" href="blog-post.html">Blog Post</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item active dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Other Pages
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                        <a class="dropdown-item" href="full-width.html">Full Width Page</a>
+                        <a class="dropdown-item active" href="full-width.html">Full Width Page</a>
                         <a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
                         <a class="dropdown-item" href="faq.html">FAQ</a>
                         <a class="dropdown-item" href="404.html">404</a>
@@ -96,93 +82,27 @@ include("DAL/SiteBanner.php");
 
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-4 mb-3">OpenDevTools
-        <small>About Us</small>
+        <small>Private Policy</small>
     </h1>
 
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
             <a href="index.php">Home</a>
         </li>
-        <li class="breadcrumb-item active">About</li>
+        <li class="breadcrumb-item active">Private Policy</li>
     </ol>
 
-    <!-- Intro Content -->
-    <div class="row">
-        <div class="col-lg-6">
-            <img class="img-fluid rounded mb-4" src="/images/opendevtoolslogo.PNG" alt="logo">
-        </div>
-        <div class="col-lg-6">
-            <h2>Background</h2>
-            <p>Our team consists of application developers, network administrators, project managers, and quality assurance testers with a passion for computing technology. Throughout the years, our workforce experience helped us envision OpenDevTools as a critical resource for all stages of the project development lifecycle. We have combined our expertise to design a platform for assisting software engineers ranging from individuals to large organizations.</p>
-            <p>Our mission is to provide project management solutions and software development utilities that assist clients from individual developers to large corporations.  OpenDevTools will encourage adoption of our software solutions by releasing them as opensource tools, encouraging expert community feedback, and implementing the latest security standards throughout our design to ensure confidentiality, integrity, and reliability.</p>
-        </div>
-    </div>
-    <!-- /.row -->
+    <p>Private policy goes here</p>
+    <p>This is how paragraphs are separated</p>
+    <p>Paste private policy over multiple paragraphs as needed</p>
 
-    <!-- Team Members -->
-    <h2>Our Team</h2>
-
-    <div class="row">
-        <?php
-
-        // Change this to be TeamMember::loadall()
-        //  Then, use the get methods to dynamically display MemberImgUrl, MemberName, MemberBio, and MemberEmail
-
-        $memberList = SiteBanner::loadall();
-        foreach($memberList as $member)
-        {
-            echo "<div class=\"col-lg-4 mb-4\">";
-            echo "<div class=\"card h-100 text-center\">";
-            echo "<img class=\"card-img-top\" src=\"" . $member->getImgUrl() . "\" alt=\"\">";
-            echo "<div class=\"card-body\">";
-            echo "<h4 class=\"card-title\">" . $member->getTitle() . "</h4>";
-            echo "<h6 class=\"card-subtitle mb-2 text-muted\">Position</h6>";
-            echo "<p class=\"card-text\">" . $member->getMessage() . "</p>";
-            echo "</div>";
-            echo "<div class=\"card-footer\">";
-            echo "<a href=\"#\">name@example.com</a>";
-            echo "</div>";
-            echo "</div>";
-            echo "</div>";
-
-        }
-
-        ?>
-    </div>
-        <!-- /.row -->
-
-        <!-- Our Partners -->
-        <h2>Our Partners</h2>
-        <div class="row">
-            <div class="col-lg-2 col-sm-4 mb-4">
-                <img class="img-fluid" src="https://www.digitalocean.com/assets/media/logos-badges/png/DO_Logo_Vertical_Blue-6321464d.png" alt="DigitalOcean">
-            </div>
-            <div class="col-lg-2 col-sm-4 mb-4">
-                <img class="img-fluid" src="http://design.ubuntu.com/wp-content/uploads/ubuntu-logo112.png" alt="Ubuntu">
-            </div>
-            <div class="col-lg-2 col-sm-4 mb-4">
-                <img class="img-fluid" src="https://blog.netapsys.fr/wp-content/uploads/2016/08/Nginx-Logo.png" alt="Nginx">
-            </div>
-            <div class="col-lg-2 col-sm-4 mb-4">
-                <img class="img-fluid" src="https://d3nmt5vlzunoa1.cloudfront.net/phpstorm/files/2015/12/PhpStorm_400x400_Twitter_logo_white.png" alt="PHPStorm">
-            </div>
-            <div class="col-lg-2 col-sm-4 mb-4">
-                <img class="img-fluid" src="https://itbeginner.net/wp-content/uploads/2017/07/xampp-logo.jpg" alt="XAMPP">
-            </div>
-            <div class="col-lg-2 col-sm-4 mb-4">
-                <img class="img-fluid" src="http://www.softura.com/wp-content/uploads/2014/01/mySQL-logo.jpg" alt="MySQL">
-            </div>
-        </div>
-        <!-- /.row -->
-
-    </div>
-
+</div>
 <!-- /.container -->
 
 <!-- Footer -->
 <footer class="py-5 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+        <p class="m-0 text-center text-white">Copyright &copy; opendevtools.org 2017</p>
     </div>
     <!-- /.container -->
 </footer>
