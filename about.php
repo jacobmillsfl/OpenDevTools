@@ -37,14 +37,14 @@ include("DAL/SiteBanner.php");
 <!-- Navigation -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+        <a class="navbar-brand" href="index.php">Start Bootstrap</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="about.html">About</a>
+                    <a class="nav-link" href="about.php">About</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="services.html">Services</a>
@@ -96,12 +96,12 @@ include("DAL/SiteBanner.php");
 
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-4 mb-3">About
-        <small>Subheading</small>
+        <small>OpenDevTools</small>
     </h1>
 
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="index.html">Home</a>
+            <a href="index.php">Home</a>
         </li>
         <li class="breadcrumb-item active">About</li>
     </ol>
@@ -109,13 +109,12 @@ include("DAL/SiteBanner.php");
     <!-- Intro Content -->
     <div class="row">
         <div class="col-lg-6">
-            <img class="img-fluid rounded mb-4" src="http://placehold.it/750x450" alt="">
+            <img class="img-fluid rounded mb-4" src="/images/opendevtoolslogo.PNG" alt="logo">
         </div>
         <div class="col-lg-6">
-            <h2>About Modern Business</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed voluptate nihil eum consectetur similique? Consectetur, quod, incidunt, harum nisi dolores delectus reprehenderit voluptatem perferendis dicta dolorem non blanditiis ex fugiat.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, magni, aperiam vitae illum voluptatum aut sequi impedit non velit ab ea pariatur sint quidem corporis eveniet. Odit, temporibus reprehenderit dolorum!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti eum ratione ex ea praesentium quibusdam? Aut, in eum facere corrupti necessitatibus perspiciatis quis?</p>
+            <h2>About Us</h2>
+            <p>Our team consists of application developers, network administrators, project managers, and quality assurance testers with a passion for computing technology. Throughout the years, our workforce experience helped us envision OpenDevTools as a critical resource for all stages of the project development lifecycle. We have combined our expertise to design a platform for assisting software engineers ranging from individuals to large organizations.</p>
+            <p>Our mission is to provide project management solutions and software development utilities that assist clients from individual developers to large corporations.  OpenDevTools will encourage adoption of our software solutions by releasing them as opensource tools, encouraging expert community feedback, and implementing the latest security standards throughout our design to ensure confidentiality, integrity, and reliability.</p>
         </div>
     </div>
     <!-- /.row -->
@@ -126,17 +125,19 @@ include("DAL/SiteBanner.php");
     <div class="row">
         <?php
 
-        $bannerList = SiteBanner::loadall();
-        $active = true;
-        foreach($bannerList as $banner)
+        // Change this to be TeamMember::loadall()
+        //  Then, use the get methods to dynamically display MemberImgUrl, MemberName, MemberBio, and MemberEmail
+
+        $memberList = SiteBanner::loadall();
+        foreach($memberList as $member)
         {
             echo "<div class=\"col-lg-4 mb-4\">";
             echo "<div class=\"card h-100 text-center\">";
-            echo "<img class=\"card-img-top\" src=\"" . $banner->getImgUrl() . "\" alt=\"\">";
+            echo "<img class=\"card-img-top\" src=\"" . $member->getImgUrl() . "\" alt=\"\">";
             echo "<div class=\"card-body\">";
-            echo "<h4 class=\"card-title\">" . $banner->getTitle() . "</h4>";
+            echo "<h4 class=\"card-title\">" . $member->getTitle() . "</h4>";
             echo "<h6 class=\"card-subtitle mb-2 text-muted\">Position</h6>";
-            echo "<p class=\"card-text\">" . $banner->getMessage() . "</p>";
+            echo "<p class=\"card-text\">" . $member->getMessage() . "</p>";
             echo "</div>";
             echo "<div class=\"card-footer\">";
             echo "<a href=\"#\">name@example.com</a>";
@@ -147,76 +148,35 @@ include("DAL/SiteBanner.php");
         }
 
         ?>
-
-
-
-        <div class="col-lg-4 mb-4">
-            <div class="card h-100 text-center">
-                <img class="card-img-top" src="http://placehold.it/750x450" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Team Member</h4>
-                    <h6 class="card-subtitle mb-2 text-muted">Position</h6>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio officiis odit.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#">name@example.com</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-            <div class="card h-100 text-center">
-                <img class="card-img-top" src="http://placehold.it/750x450" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Team Member</h4>
-                    <h6 class="card-subtitle mb-2 text-muted">Position</h6>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio officiis odit.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#">name@example.com</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-            <div class="card h-100 text-center">
-                <img class="card-img-top" src="http://placehold.it/750x450" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Team Member</h4>
-                    <h6 class="card-subtitle mb-2 text-muted">Position</h6>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio officiis odit.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#">name@example.com</a>
-                </div>
-            </div>
-        </div>
     </div>
-    <!-- /.row -->
+        <!-- /.row -->
 
-    <!-- Our Customers -->
-    <h2>Our Customers</h2>
-    <div class="row">
-        <div class="col-lg-2 col-sm-4 mb-4">
-            <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+        <!-- Our Partners -->
+        <h2>Our Partners</h2>
+        <div class="row">
+            <div class="col-lg-2 col-sm-4 mb-4">
+                <img class="img-fluid" src="https://www.digitalocean.com/assets/media/logos-badges/png/DO_Logo_Vertical_Blue-6321464d.png" alt="DigitalOcean">
+            </div>
+            <div class="col-lg-2 col-sm-4 mb-4">
+                <img class="img-fluid" src="http://design.ubuntu.com/wp-content/uploads/ubuntu-logo112.png" alt="Ubuntu">
+            </div>
+            <div class="col-lg-2 col-sm-4 mb-4">
+                <img class="img-fluid" src="https://blog.netapsys.fr/wp-content/uploads/2016/08/Nginx-Logo.png" alt="Nginx">
+            </div>
+            <div class="col-lg-2 col-sm-4 mb-4">
+                <img class="img-fluid" src="https://d3nmt5vlzunoa1.cloudfront.net/phpstorm/files/2015/12/PhpStorm_400x400_Twitter_logo_white.png" alt="PHPStorm">
+            </div>
+            <div class="col-lg-2 col-sm-4 mb-4">
+                <img class="img-fluid" src="https://itbeginner.net/wp-content/uploads/2017/07/xampp-logo.jpg" alt="XAMPP">
+            </div>
+            <div class="col-lg-2 col-sm-4 mb-4">
+                <img class="img-fluid" src="http://www.softura.com/wp-content/uploads/2014/01/mySQL-logo.jpg" alt="MySQL">
+            </div>
         </div>
-        <div class="col-lg-2 col-sm-4 mb-4">
-            <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-        </div>
-        <div class="col-lg-2 col-sm-4 mb-4">
-            <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-        </div>
-        <div class="col-lg-2 col-sm-4 mb-4">
-            <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-        </div>
-        <div class="col-lg-2 col-sm-4 mb-4">
-            <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-        </div>
-        <div class="col-lg-2 col-sm-4 mb-4">
-            <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-        </div>
+        <!-- /.row -->
+
     </div>
-    <!-- /.row -->
 
-</div>
 <!-- /.container -->
 
 <!-- Footer -->
