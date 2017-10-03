@@ -7,6 +7,7 @@ Description:    DAL class for SiteBanner
 */
 
 
+
 class SiteBanner {
 
     // This is for local purposes only! In hosted environments the db_settings.php file should be outside of the webroot, such as: include("/outside-webroot/db_settings.php");

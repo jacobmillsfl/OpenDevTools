@@ -9,8 +9,8 @@
 
 include("DAL/SiteBanner.php");
 
-?>
 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
