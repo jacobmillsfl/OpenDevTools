@@ -92,9 +92,23 @@
         <li class="breadcrumb-item active">Private Policy</li>
     </ol>
 
-    <p>Private policy goes here</p>
-    <p>This is how paragraphs are separated</p>
-    <p>Paste private policy over multiple paragraphs as needed</p>
+    <h2>Privacy Policy </h2>
+
+    <p style="text-align:justify;">
+        Protecting your private information is our priority. This Statement of Privacy applies to www.opendevtools.org and OpenDevTools.org <br>
+        and governs data collection and usage. For the purposes of this Privacy Policy, unless otherwise noted, all references to OpenDevTools.org <br>
+        include www.opendevtools.org and OpenDevTools. The OpenDevTools website is a Technology & Engineering site. By using the OpenDevTools website,<br>
+        you consent to the data practices described in this statement.
+    </p>
+
+    <h2>Collection of your Personal Information </h2>
+    <p style="text-align:justify;">
+        We do not collect personally identifiable information from our users. <br>
+        Please keep in mind that if you directly disclose personally identifiable information or personally sensitive data through OpenDevTools's <br>
+        public message boards, this information may be collected and used by others. OpenDevTools encourages you to review the privacy statements <br>
+        of websites you choose to link to from OpenDevTools so that you can understand how those websites collect, use and share your information.<br>
+        OpenDevTools is not responsible for the privacy statements or other content on websites outside of the OpenDevTools website.
+    </p>
 
 </div>
 <!-- /.container -->
