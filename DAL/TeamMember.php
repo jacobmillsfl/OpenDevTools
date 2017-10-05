@@ -41,7 +41,7 @@ class TeamMember {
             case 1:
                 self::__constructPK( $argv[0] );
                 break;
-            case 4:
+            case 7:
                 self::__constructFull( $argv[0], $argv[1], $argv[2], $argv[3], $argv[4], $argv[5], $argv[6] );
         }
     }
