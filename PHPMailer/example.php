@@ -13,23 +13,25 @@ require_once 'src/PHPMailer.php';
 require_once 'src/SMTP.php';
 require_once 'src/Exception.php';
 
+include("../DAL/db_localsettings.php");
+
 
 $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
 try {
     //Server settings
     //$mail->SMTPDebug = 2;                                 // Debugging Only!
     $mail->isSMTP();                                      // Set mailer to use SMTP
-    $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+    $mail->Host = $smtpHost;  // Specify main and backup SMTP servers
     $mail->SMTPAuth = true;                               // Enable SMTP authentication
-    $mail->Username = 'opendevtools@gmail.com';                 // SMTP username
-    $mail->Password = 'password';                           // SMTP password
+    $mail->Username = $smtpUsername;                 // SMTP username
+    $mail->Password = $smtpPassword;                           // SMTP password
     $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
     $mail->Port = 587;                                    // TCP port to connect to
 
     //Recipients
-    $mail->setFrom('opendevtools@gmail.com', 'OpenDevTools');
+    $mail->setFrom($smtpUsername, 'OpenDevTools');
     $mail->addAddress('recipientaddress@site.com');
-    $mail->addReplyTo('opendevtools@gmail.com', 'NoReply');
+    $mail->addReplyTo($smtpUsername, 'NoReply');
     //$mail->addCC('cc@example.com');
     //$mail->addBCC('bcc@example.com');
 

@@ -10,3 +10,7 @@ $servername = "localhost";
 $username = "webapp";
 $password = "password";
 $dbname = "opendevtools";
+
+$smtpHost = "smtp.gmail.com";
+$smtpUsername = "opendevtools@gmail.com";
+$smtpPassword = "";
