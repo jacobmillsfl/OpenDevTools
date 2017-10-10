@@ -11,6 +11,6 @@ BEGIN
 	
 	-- Return last inserted ID as result
 	SELECT LAST_INSERT_ID() as id;
-	
+
 END //
 DELIMITER ;
