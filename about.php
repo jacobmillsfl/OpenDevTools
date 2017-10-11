@@ -7,7 +7,7 @@
 
 
 
-include("DAL/SiteBanner.php");
+include("DAL/TeamMember.php");
 
 ?>
 
@@ -22,7 +22,7 @@ include("DAL/SiteBanner.php");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Modern Business - Start Bootstrap Template</title>
+    <title>About Us</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -128,19 +128,19 @@ include("DAL/SiteBanner.php");
         // Change this to be TeamMember::loadall()
         //  Then, use the get methods to dynamically display MemberImgUrl, MemberName, MemberBio, and MemberEmail
 
-        $memberList = SiteBanner::loadall();
+        $memberList = TeamMember::loadall();
         foreach($memberList as $member)
         {
             echo "<div class=\"col-lg-4 mb-4\">";
             echo "<div class=\"card h-100 text-center\">";
             echo "<img class=\"card-img-top\" src=\"" . $member->getImgUrl() . "\" alt=\"\">";
             echo "<div class=\"card-body\">";
-            echo "<h4 class=\"card-title\">" . $member->getTitle() . "</h4>";
-            echo "<h6 class=\"card-subtitle mb-2 text-muted\">Position</h6>";
-            echo "<p class=\"card-text\">" . $member->getMessage() . "</p>";
+            echo "<h4 class=\"card-title\">" . $member->getName() . "</h4>";
+            echo "<h6 class=\"card-subtitle mb-2 text-muted\"> ". $member->getTitle() . " </h6>";
+            echo "<p class=\"card-text\">" . $member->getBio() . "</p>";
             echo "</div>";
             echo "<div class=\"card-footer\">";
-            echo "<a href=\"#\">name@example.com</a>";
+            echo "<a href=\"#\">". $member->getEmail() . "</a>";
             echo "</div>";
             echo "</div>";
             echo "</div>";
