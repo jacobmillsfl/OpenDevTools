@@ -35,6 +35,7 @@ include("DAL/SiteBanner.php");
 <body>
 
 <!-- Navigation -->
+<<<<<<< HEAD
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
         <a class="navbar-brand" href="index.html">OpenDevTools</a>
@@ -83,6 +84,10 @@ include("DAL/SiteBanner.php");
         </div>
     </div>
 </nav>
+=======
+<?php include "header.php" ?>
+
+>>>>>>> 8123e4ebc02b4a6ab9d15b8f2fb615212a58910d
 
 <header>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -273,12 +278,7 @@ include("DAL/SiteBanner.php");
 <!-- /.container -->
 
 <!-- Footer -->
-<footer class="py-5 bg-dark">
-    <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; opendevtools.org 2017</p>
-    </div>
-    <!-- /.container -->
-</footer>
+<?php include "footer.php" ?>
 
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>
