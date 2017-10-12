@@ -10,6 +10,9 @@
 .idea/**/tasks.xml
 .idea/dictionaries
 
+# We really don't want local dev-environment settings in the repo
+.idea/
+
 # Sensitive or high-churn files:
 .idea/**/dataSources/
 .idea/**/dataSources.ids
