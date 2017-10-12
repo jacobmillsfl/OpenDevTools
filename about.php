@@ -5,9 +5,10 @@
  * Description: This file is the about page
  */
 
+/*arbitrary change */
 
 
-include("DAL/SiteBanner.php");
+include("DAL/TeamMember.php");
 
 ?>
 
@@ -22,7 +23,7 @@ include("DAL/SiteBanner.php");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Modern Business - Start Bootstrap Template</title>
+    <title>About Us</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -35,61 +36,7 @@ include("DAL/SiteBanner.php");
 <body>
 
 <!-- Navigation -->
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="index.php">Start Bootstrap</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="about.php">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="services.html">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Portfolio
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                        <a class="dropdown-item" href="portfolio-1-col.html">1 Column Portfolio</a>
-                        <a class="dropdown-item" href="portfolio-2-col.html">2 Column Portfolio</a>
-                        <a class="dropdown-item" href="portfolio-3-col.html">3 Column Portfolio</a>
-                        <a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
-                        <a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Blog
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                        <a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
-                        <a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>
-                        <a class="dropdown-item" href="blog-post.html">Blog Post</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Other Pages
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                        <a class="dropdown-item" href="full-width.html">Full Width Page</a>
-                        <a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
-                        <a class="dropdown-item" href="faq.html">FAQ</a>
-                        <a class="dropdown-item" href="404.html">404</a>
-                        <a class="dropdown-item" href="pricing.html">Pricing Table</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<?php include "header.php" ?>
 
 <!-- Page Content -->
 <div class="container">
@@ -128,19 +75,19 @@ include("DAL/SiteBanner.php");
         // Change this to be TeamMember::loadall()
         //  Then, use the get methods to dynamically display MemberImgUrl, MemberName, MemberBio, and MemberEmail
 
-        $memberList = SiteBanner::loadall();
+        $memberList = TeamMember::loadall();
         foreach($memberList as $member)
         {
             echo "<div class=\"col-lg-4 mb-4\">";
             echo "<div class=\"card h-100 text-center\">";
             echo "<img class=\"card-img-top\" src=\"" . $member->getImgUrl() . "\" alt=\"\">";
             echo "<div class=\"card-body\">";
-            echo "<h4 class=\"card-title\">" . $member->getTitle() . "</h4>";
-            echo "<h6 class=\"card-subtitle mb-2 text-muted\">Position</h6>";
-            echo "<p class=\"card-text\">" . $member->getMessage() . "</p>";
+            echo "<h4 class=\"card-title\">" . $member->getName() . "</h4>";
+            echo "<h6 class=\"card-subtitle mb-2 text-muted\"> ". $member->getTitle() . " </h6>";
+            echo "<p class=\"card-text\">" . $member->getBio() . "</p>";
             echo "</div>";
             echo "<div class=\"card-footer\">";
-            echo "<a href=\"#\">name@example.com</a>";
+            echo "<a href=\"#\">". $member->getEmail() . "</a>";
             echo "</div>";
             echo "</div>";
             echo "</div>";
@@ -180,12 +127,7 @@ include("DAL/SiteBanner.php");
 <!-- /.container -->
 
 <!-- Footer -->
-<footer class="py-5 bg-dark">
-    <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
-    </div>
-    <!-- /.container -->
-</footer>
+<?php include "footer.php" ?>
 
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>

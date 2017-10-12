@@ -5,7 +5,7 @@
       <paths name="opendevtools.org">
         <serverdata>
           <mappings>
-            <mapping deploy="/var/www/dev.opendevtools.org/html" local="$PROJECT_DIR$" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
