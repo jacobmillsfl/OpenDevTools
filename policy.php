@@ -1,22 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Modern Business - Start Bootstrap Template</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/modern-business.css" rel="stylesheet">
-
-</head>
+<?php include "head.php" ?>
 
 <body>
 
@@ -41,19 +26,26 @@
     <h2>Privacy Policy </h2>
 
     <p style="text-align:justify;">
-        Protecting your private information is our priority. This Statement of Privacy applies to www.opendevtools.org and OpenDevTools.org
-        and governs data collection and usage. For the purposes of this Privacy Policy, unless otherwise noted, all references to OpenDevTools.org
-        include www.opendevtools.org and OpenDevTools. The OpenDevTools website is a Technology & Engineering site. By using the OpenDevTools website,
+        Protecting your private information is our priority. This Statement of Privacy applies to www.opendevtools.org
+        and OpenDevTools.org
+        and governs data collection and usage. For the purposes of this Privacy Policy, unless otherwise noted, all
+        references to OpenDevTools.org
+        include www.opendevtools.org and OpenDevTools. The OpenDevTools website is a Technology & Engineering site. By
+        using the OpenDevTools website,
         you consent to the data practices described in this statement.
     </p>
 
     <h2>Collection of Personal Information </h2>
     <p style="text-align:justify;">
         We do not collect personally identifiable information from our users.
-        Please keep in mind that if you directly disclose personally identifiable information or personally sensitive data through the OpenDevTools
-        public message boards, this information may be collected and used by others. OpenDevTools encourages you to review the privacy statements
-        of websites you choose to link to from OpenDevTools so that you can understand how those websites collect, use and share your information.
-        OpenDevTools is not responsible for the privacy statements or other content on websites outside of the OpenDevTools website.
+        Please keep in mind that if you directly disclose personally identifiable information or personally sensitive
+        data through the OpenDevTools
+        public message boards, this information may be collected and used by others. OpenDevTools encourages you to
+        review the privacy statements
+        of websites you choose to link to from OpenDevTools so that you can understand how those websites collect, use
+        and share your information.
+        OpenDevTools is not responsible for the privacy statements or other content on websites outside of the
+        OpenDevTools website.
     </p>
     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 

@@ -55,7 +55,7 @@
                 <h4 class="card-header">Download Now</h4>
                 <div class="card-body">
                     <p class="card-text">This product is still under active development, but feel free to try the <a
-                                href="https://www.github.com/h0r53/DALGen">BETA</a> version.</p>
+                            href="https://www.github.com/h0r53/DALGen">BETA</a> version.</p>
                 </div>
                 <div class="card-footer">
                     <a href="https://www.github.com/h0r53/DALGen" class="btn btn-primary">Download Beta</a>

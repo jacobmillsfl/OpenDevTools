@@ -6,7 +6,6 @@
  */
 
 
-
 include("DAL/SiteBanner.php");
 
 
@@ -15,22 +14,7 @@ include("DAL/SiteBanner.php");
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>OpenDevTools.Org</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/modern-business.css" rel="stylesheet">
-
-</head>
+<?php include "head.php" ?>
 
 <body>
 
@@ -48,8 +32,7 @@ include("DAL/SiteBanner.php");
 
             $bannerList = SiteBanner::loadall();
             $active = true;
-            foreach($bannerList as $banner)
-            {
+            foreach ($bannerList as $banner) {
 
                 echo "<div class=\"carousel-item" . ($active ? " active" : "") . "\" style=\"background-image: url('" . $banner->getImgUrl() . "')\">";
                 echo "<div class=\"carousel-caption d-none d-md-block\">";
@@ -84,10 +67,11 @@ include("DAL/SiteBanner.php");
             <div class="card h-100">
                 <h4 class="card-header">Background</h4>
                 <div class="card-body">
-                    <p class="card-text">Our team consists of application developers, network administrators, project managers, and quality assurance testers with a passion for computing technology. Throughout the years, our workforce experience helped us envision OpenDevTools as a critical resource for all stages of the project development lifecycle. We have combined our expertise to design a platform for assisting software engineers ranging from individuals to large organizations.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Learn More</a>
+                    <p class="card-text">Our team consists of application developers, network administrators, project
+                        managers, and quality assurance testers with a passion for computing technology. Throughout the
+                        years, our workforce experience helped us envision OpenDevTools as a critical resource for all
+                        stages of the project development lifecycle. We have combined our expertise to design a platform
+                        for assisting software engineers ranging from individuals to large organizations.</p>
                 </div>
             </div>
         </div>
@@ -95,10 +79,12 @@ include("DAL/SiteBanner.php");
             <div class="card h-100">
                 <h4 class="card-header">Mission</h4>
                 <div class="card-body">
-                    <p class="card-text">Our mission is to provide project management solutions and software development utilities that assist clients from the individual developer to the large organization. We will distribute our content and services free of charge and most of the software we produce will be released as opensource to encourage community feedback and improvement. The utmost security standards will be implemented throughout the design of our software to ensure confidentiality, integrity, and reliability.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Learn More</a>
+                    <p class="card-text">Our mission is to provide project management solutions and software development
+                        utilities that assist clients from the individual developer to the large organization. We will
+                        distribute our content and services free of charge and most of the software we produce will be
+                        released as opensource to encourage community feedback and improvement. The utmost security
+                        standards will be implemented throughout the design of our software to ensure confidentiality,
+                        integrity, and reliability.</p>
                 </div>
             </div>
         </div>
@@ -106,10 +92,10 @@ include("DAL/SiteBanner.php");
             <div class="card h-100">
                 <h4 class="card-header">Proposal</h4>
                 <div class="card-body">
-                    <p class="card-text">We will be using the Scrum framework for incremental agile software development to continually refine project requirements and adapt to the needs of our consumers. The initial implementation of the OpenDevTools mission will involve the development of three primary deliverables, which are listed in the following section.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Learn More</a>
+                    <p class="card-text">We will be using the Scrum framework for incremental agile software development
+                        to continually refine project requirements and adapt to the needs of our consumers. The initial
+                        implementation of the OpenDevTools mission will involve the development of three primary
+                        deliverables, which are listed in the following section.</p>
                 </div>
             </div>
         </div>
@@ -127,7 +113,10 @@ include("DAL/SiteBanner.php");
                     <h4 class="card-title">
                         <a href="#">opendevtools.org</a>
                     </h4>
-                    <p class="card-text">This website will serve as a centralized distribution center for all products and services offered by the OpenDevTools team. Users will be able to navigate to the website, learn more about our organization, create accounts, access our software and services, and participate in the OpenDevTools community.</p>
+                    <p class="card-text">This website will serve as a centralized distribution center for all products
+                        and services offered by the OpenDevTools team. Users will be able to navigate to the website,
+                        learn more about our organization, create accounts, access our software and services, and
+                        participate in the OpenDevTools community.</p>
                 </div>
             </div>
         </div>
@@ -138,7 +127,12 @@ include("DAL/SiteBanner.php");
                     <h4 class="card-title">
                         <a href="#">DALGen</a>
                     </h4>
-                    <p class="card-text">DALGen, the Data Access Layer Generator, prepares a robust database access architecture by automatically generating database objects and code libraries tailored to secure data access. It has support for various DBMS platforms, including Microsoft SQL Server, MySQL, and Oracle. Additionally, DALGen can produce secure, object-oriented, data access layers for C++, C#, Java, Python, and PHP. To use the tool, you first design a database E/R diagram. Then, the schema for each entity in the E/R diagram is created via the DALGen graphical user interface. The result is a collection of SQL scripts to create an initial database schema along with stored procedures to perform basic SCRUD (search create read update delete) operations on each entity, as well as object-oriented code libraries for interacting with the generated schema in the programming languages of the user’s preference.</p>
+                    <p class="card-text">DALGen, the Data Access Layer Generator, prepares a robust database access
+                        architecture by automatically generating database objects and code libraries tailored to secure
+                        data access.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="dalgen.php" class="btn btn-primary">Learn More</a>
                 </div>
             </div>
         </div>
@@ -149,7 +143,12 @@ include("DAL/SiteBanner.php");
                     <h4 class="card-title">
                         <a href="#">TaskTracker</a>
                     </h4>
-                    <p class="card-text">TaskTracker is a project management service for software development teams. The TaskTracker website will allow users to create development teams and projects under each team. Tasks that are associated with each project will be assigned to members of that project’s team. Users can update their assigned tasks with comments and mark tasks as complete. Tasks can be further validated by a member of a Quality Assurance team. Metrics from each project are aggregated to provide helpful graphs and statistics to project administrators.</p>
+                    <p class="card-text">TaskTracker is a project management service for software development teams. The
+                        TaskTracker website allows users to create development teams and projects under each team.
+                        Users can update their assigned tasks with comments and mark tasks as complete.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="tasktracker.php" class="btn btn-primary">Learn More</a>
                 </div>
             </div>
         </div>

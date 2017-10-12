@@ -9,7 +9,8 @@
 <!-- Footer -->
 <footer class="py-5 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; opendevtools.org 2017 - <a href="/policy.php">Private Policy</a></p>
+        <p class="m-0 text-center text-white">Copyright &copy; opendevtools.org 2017 - <a href="/policy.php">Private
+                Policy</a></p>
     </div>
     <!-- /.container -->
 </footer>
