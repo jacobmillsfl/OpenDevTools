@@ -34,60 +34,7 @@ include("DAL/SiteBanner.php");
 
 <body>
 
-<!-- Navigation -->
-<<<<<<< HEAD
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="index.html">OpenDevTools</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="about.php">About</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Services
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                        <a class="dropdown-item" href="portfolio-2-col.html">DALGen</a>
-                        <a class="dropdown-item" href="portfolio-3-col.html">TaskTracker</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Blog
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                        <a class="dropdown-item" href="blog-home-2.html">Blog Home</a>
-                        <a class="dropdown-item" href="blog-post.html">Blog Sample</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <?php
-                    $loggedIn = false;
-                    if (!$loggedIn){
-                        echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"register.php\">Register</a></li>";
-                        echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"login.php\">Login</a></li>";
-                    }
-                    else{
-                        echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"account.php\">Account</a></li>";
-                    }
-                    ?>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-=======
 <?php include "header.php" ?>
-
->>>>>>> 8123e4ebc02b4a6ab9d15b8f2fb615212a58910d
 
 <header>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -206,39 +153,6 @@ include("DAL/SiteBanner.php");
                 </div>
             </div>
         </div>
-        <!--         <div class="col-lg-4 col-sm-6 portfolio-item">
-                  <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                    <div class="card-body">
-                      <h4 class="card-title">
-                        <a href="#">Project Four</a>
-                      </h4>
-                      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 portfolio-item">
-                  <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                    <div class="card-body">
-                      <h4 class="card-title">
-                        <a href="#">Project Five</a>
-                      </h4>
-                      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 portfolio-item">
-                  <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                    <div class="card-body">
-                      <h4 class="card-title">
-                        <a href="#">Project Six</a>
-                      </h4>
-                      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
-                    </div>
-                  </div>
-                </div> -->
     </div>
     <!-- /.row -->
 
@@ -277,7 +191,6 @@ include("DAL/SiteBanner.php");
 </div>
 <!-- /.container -->
 
-<!-- Footer -->
 <?php include "footer.php" ?>
 
 <!-- Bootstrap core JavaScript -->
