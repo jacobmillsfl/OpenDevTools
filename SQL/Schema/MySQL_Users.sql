@@ -168,7 +168,7 @@ BEGIN
 		AND COALESCE(Users.`location`,'') = COALESCE(paramlocation,Users.`location`,'')
 		AND COALESCE(Users.`imgUrl`,'') = COALESCE(paramimgUrl,Users.`imgUrl`,'')
 		AND COALESCE(Users.`githubUrl`,'') = COALESCE(paramgithubUrl,Users.`githubUrl`,'')
-		AND COALESCE(CAST(Users.`createDate` AS DATE), CAST(GETDATE() AS DATE)) = COALESCE(CAST(paramcreateDate AS DATE),CAST(Users.`createDate` AS DATE), CAST(GETDATE() AS DATE));
+		AND COALESCE(CAST(Users.`createDate` AS DATE), CAST(NOW() AS DATE)) = COALESCE(CAST(paramcreateDate AS DATE),CAST(Users.`createDate` AS DATE), CAST(NOW() AS DATE));
 END //
 DELIMITER ;
 
