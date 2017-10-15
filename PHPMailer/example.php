@@ -30,7 +30,7 @@ try {
 
     //Recipients
     $mail->setFrom($smtpUsername, 'OpenDevTools');
-    $mail->addAddress('recipientaddress@site.com');
+    $mail->addAddress('jjm15e@my.fsu.edu');
     $mail->addReplyTo($smtpUsername, 'NoReply');
     //$mail->addCC('cc@example.com');
     //$mail->addBCC('bcc@example.com');

@@ -6,19 +6,6 @@
  */
 
 
-/*$user = new Users();
-$user->setUsername("Test");
-
-$options = [
-    'cost' => 10,
-    'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM),
-];
-$hash = password_hash("opendevtools", PASSWORD_BCRYPT, $options);
-
-$user->setPassword($options);
-$user->save();*/
-
-
 class Authentication
 {
 
@@ -34,6 +21,20 @@ class Authentication
             return false;
         }
 
+    }
+
+    public static function createUser($paramUsername,$paramPassword,$paramEmail,$paramBio,$paramLocation,$paramImgUrl,$paramGithubUrl,$paramCreateDate,$paramRoleId)
+    {
+        // Create password using the code below to generate a hash
+
+        $options = [
+            'cost' => 10,
+            'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM),
+        ];
+        $hash = password_hash($paramPassword, PASSWORD_BCRYPT, $options);
+
+        $user = new User(0,$paramUsername,$hash,$paramEmail,$paramBio,$paramLocation,$paramImgUrl,$paramGithubUrl,$paramCreateDate,$paramRoleId);
+        $user->save();
     }
 }
 
