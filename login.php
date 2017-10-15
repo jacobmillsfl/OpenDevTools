@@ -3,7 +3,7 @@
 
 
 include("Utilities/Authentication.php");
-include("DAL/Users.php");
+include("DAL/User.php");
 
 $result = Authentication::authLogin("Test1","opendevtools1");
 if ($result == true)

@@ -23,7 +23,7 @@ class Authentication
 {
 
     public static function authLogin($username,$password) {
-        $users = Users::search(0,$username,"","","","","","","");
+        $users = User::search(0,$username,"","","","","","","",0);
         if (count($users) != 1) return false;
 
         if(password_verify($password, $users[0]->getPassword())) {
@@ -33,6 +33,7 @@ class Authentication
         else {
             return false;
         }
+
     }
 }
 
