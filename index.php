@@ -30,6 +30,7 @@ include("DAL/SiteBanner.php");
         <div class="carousel-inner" role="listbox">
             <?php
 
+
             $bannerList = SiteBanner::loadall();
             $active = true;
             foreach ($bannerList as $banner) {
