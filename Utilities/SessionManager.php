@@ -17,6 +17,8 @@ class SessionManager
         $_SESSION['msg'] = $arg1;
     }
 
+
+
     public static function getUserId() {
         if ($_SESSION['userId'])
             return $_SESSION['userId'];
