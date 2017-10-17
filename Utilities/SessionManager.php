@@ -1,12 +1,17 @@
 <?php
-//session_start();
+/*
+ * Author:      Jacob Mills
+ * Date:        10/16/2017
+ * Description: This utility provides static functions to implement centralized accessor/mutator methods for all session values.
+ *
+ */
 
 
 class SessionManager
 {
 
     public static function getTestMessage() {
-        if ($_SESSION['msg'])
+        if (isset($_SESSION['msg']))
             return $_SESSION['msg'];
         else
             return "";
@@ -20,7 +25,7 @@ class SessionManager
 
 
     public static function getUserId() {
-        if ($_SESSION['userId'])
+        if (isset($_SESSION['userId']))
             return $_SESSION['userId'];
         else
             return 0;

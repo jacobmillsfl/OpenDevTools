@@ -13,7 +13,7 @@ require_once 'src/PHPMailer.php';
 require_once 'src/SMTP.php';
 require_once 'src/Exception.php';
 
-include("../DAL/db_localsettings.php");
+include_once("../DAL/db_localsettings.php");
 
 
 $mail = new PHPMailer(true);                              // Passing `true` enables exceptions

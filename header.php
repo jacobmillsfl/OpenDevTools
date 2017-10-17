@@ -1,3 +1,8 @@
+<?php
+
+include_once("Utilities/SessionManager.php");
+?>
+
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
         <a class="navbar-brand" href="index.php">OpenDevTools</a>
@@ -37,12 +42,12 @@
                 </li>
                 <li class="nav-item">
                     <?php
-                    $loggedIn = false;
+                    $loggedIn = SessionManager::getUserId() > 0;
                     if (!$loggedIn) {
-                        echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"index.php\">Register</a></li>";
-                        echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"index.php\">Login</a></li>";
+                        echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"register.php\">Register</a></li>";
+                        echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"login.php\">Login</a></li>";
                     } else {
-                        echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"index.php\">Account</a></li>";
+                        echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"account.php\">Account</a></li>";
                     }
                     ?>
                 </li>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("Utilities/SessionManager.php");
+include_once("Utilities/SessionManager.php");
 
 if (SessionManager::getUserId() != 0)
 {

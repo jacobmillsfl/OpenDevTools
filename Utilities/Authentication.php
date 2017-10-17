@@ -5,22 +5,22 @@
  * Date: 10/15/2017
  */
 
+include_once("SessionManager.php");
+include_once("DAL/User.php");
 
 class Authentication
 {
 
+    // Returns boolean indication if user is found
     public static function authLogin($username,$password) {
-        $users = User::search(0,$username,"","","","","","","",0);
-        if (count($users) != 1) return false;
-
-        if(password_verify($password, $users[0]->getPassword())) {
+        $user = User::lookup($username);
+        if($user != null && password_verify($password, $user->getPassword())) {
+            SessionManager::setUserId($user->getPassword());
             return true;
-            // User session manager to create new session for this user
         }
         else {
             return false;
         }
-
     }
 
     public static function createUser($paramUsername,$paramPassword,$paramEmail,$paramBio,$paramLocation,$paramImgUrl,$paramGithubUrl,$paramCreateDate,$paramRoleId)
@@ -35,6 +35,8 @@ class Authentication
 
         $user = new User(0,$paramUsername,$hash,$paramEmail,$paramBio,$paramLocation,$paramImgUrl,$paramGithubUrl,$paramCreateDate,$paramRoleId);
         $user->save();
+
+        return $user;
     }
 }
 

@@ -5,12 +5,13 @@
  * Description: This file is the landing page for OpenDevTools
  */
 
+session_start();
 
-include("DAL/SiteBanner.php");
+include_once("DAL/SiteBanner.php");
+include_once("Utilities/SessionManager.php");
 
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +30,6 @@ include("DAL/SiteBanner.php");
         </ol>
         <div class="carousel-inner" role="listbox">
             <?php
-
 
             $bannerList = SiteBanner::loadall();
             $active = true;

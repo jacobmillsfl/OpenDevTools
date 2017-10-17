@@ -7,8 +7,7 @@
 
 /*arbitrary change */
 
-
-include("DAL/TeamMember.php");
+include_once("DAL/TeamMember.php");
 
 ?>
 
