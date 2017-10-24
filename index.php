@@ -23,15 +23,23 @@ include_once("Utilities/SessionManager.php");
 
 <header>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
         <div class="carousel-inner" role="listbox">
             <?php
-
+            // Load all SiteBanner objects from the database
             $bannerList = SiteBanner::loadall();
+
+            // Build the bottom portion of the carousel (data sliders)
+            $active = true;
+            $count = 0;
+            echo "<ol class=\"carousel-indicators\">";
+            foreach ($bannerList as $banner) {
+                echo "<li data-target=\"#carouselExampleIndicators\" data-slide-to=\"". $count . "\" " . ($active ? "class=\"active\">" : "") . "</li>";
+                $active = false;
+                $count++;
+            }
+            echo "</ol>";
+
+            // Build the image portion of the carousel.
             $active = true;
             foreach ($bannerList as $banner) {
 
@@ -43,7 +51,6 @@ include_once("Utilities/SessionManager.php");
                 echo "</div>";
                 $active = false;
             }
-
             ?>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
