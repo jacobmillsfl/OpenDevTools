@@ -8,6 +8,10 @@
 session_start();
 
 include_once("Utilities/SessionManager.php");
+include_once("Utilities/Authentication.php");
+include_once("DAL/User.php");
+
+$errorMessage = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -16,13 +20,37 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     // Step 2) Use Authentication::createUser() with the form fields to create new user
     // Step 3) Use SessionManager::setUserId() to store the new userID in session
     // Step 4) Redirect to /account.php for the newly created user
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+    $email = $_POST["email"];
+    $location = $_POST["location"];
+    $imgUrl = $_POST["imgUrl"];
+    $githubUrl = $_POST["githubUrl"];
+    $bio = $_POST["bio"];
 
+    // 1) Ensure username is not already taken
+    $user = User::lookup($username);
+    if ($user != null) {
+        // This username is already taken
+        $errorMessage = "The provided username is already in use. Please try another username.";
+    }
+    else {
+        $currentDate = date('Y-m-d H:i:s');
+        $defaultRoleId = 1; // This corresponds to the GENERAL default Role (Not Admin, Moderator, or Blogger)
+        $user = Authentication::createUser($username,$password,$email,$bio,$location,$imgUrl,$githubUrl,$currentDate,$defaultRoleId);
 
-    // Temporary Test Code
-    SessionManager::setUserId(1);
-    header("location: /index.php");
+        if ($user == null) {
+            // Something went wrong while attempting to create this user
+            $errorMessage = "An error occurred during the creation of this user account. Please try again. If the problem continues, contact OpenDevTools support at opendevtools@gmail.com";
+        }
+        else {
+            // Temporary Test Code
+            $userId = $user->getId();
+            SessionManager::setUserId($userId);
+            header("location: /index.php");
+        }
+    }
 }
-
 
 ?>
 
@@ -50,7 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="controls">
                                     <strong>Username:</strong><span style="color:red;">*</span>
                                     <br/><small>Please enter a unique username</small>
-                                    <input type="text" class="form-control" id="username" required
+                                    <input type="text" class="form-control" id="username" name="username" required
                                            data-validation-required-message="Please enter a username." maxlength="255">
                                     <p class="help-block"></p>
                                 </div>
@@ -59,7 +87,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="controls">
                                     <strong>Password:</strong><span style="color:red;">*</span>
                                     <br/><small>Please enter a strong password</small>
-                                    <input type="password" class="form-control" id="password" required
+                                    <input type="password" class="form-control" id="password" name="password" required
                                            data-validation-required-message="Please enter a password." maxlength="255">
                                 </div>
                             </div>
@@ -69,7 +97,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="controls">
                                     <strong>Email Address:</strong><span style="color:red;">*</span>
                                     <br/><small>Please enter your email address</small>
-                                    <input type="email" class="form-control" id="email" required
+                                    <input type="email" class="form-control" id="email" name="email" required
                                            data-validation-required-message="Please enter your email address." maxlength="255">
                                 </div>
                             </div>
@@ -77,7 +105,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="controls">
                                     <strong>Location:</strong>
                                     <br/><small>Please enter your location</small>
-                                    <input type="text" class="form-control" id="location" maxlength="255">
+                                    <input type="text" class="form-control" id="location" name="location" maxlength="255">
                                 </div>
                             </div>
                         </div>
@@ -86,14 +114,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="controls">
                                     <strong>User Avatar:</strong>
                                     <br/><small>Please enter the URL of an image to associate with your profile</small>
-                                    <input type="text" class="form-control" id="imgUrl" maxlength="511">
+                                    <input type="text" class="form-control" id="imgUrl" name="imgUrl" maxlength="511">
                                 </div>
                             </div>
                             <div class="control-group form-group col-lg-6 ">
                                 <div class="controls">
                                     <strong>GitHub URL:</strong>
                                     <br/><small>Please enter your GitHub URL</small>
-                                    <input type="text" class="form-control" id="githubUrl" maxlength="511">
+                                    <input type="text" class="form-control" id="githubUrl" name="githubUrl" maxlength="511">
                                 </div>
                             </div>
                         </div>
@@ -103,14 +131,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="controls">
                                     <strong>Background:</strong>
                                     <br/><small>Please enter background information about yourself</small>
-                                    <textarea rows="10" cols="100" class="form-control" id="bio" maxlength="1047"
+                                    <textarea rows="10" cols="100" class="form-control" id="bio" name="bio" maxlength="1047"
                                               style="resize:none"></textarea>
                                 </div>
                             </div>
                         </div>
-
-                        <div id="success"></div>
-                        <!-- For success/fail messages -->
+                        <?php
+                        if ($errorMessage != "")
+                        {
+                            echo "<div id=\"success\">" . $errorMessage . "</div>";
+                        }
+                        ?>
                         <button type="submit" class="btn btn-primary float-right">Register</button>
                     </form>
                 </div>

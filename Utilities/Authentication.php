@@ -15,7 +15,7 @@ class Authentication
     public static function authLogin($username,$password) {
         $user = User::lookup($username);
         if($user != null && password_verify($password, $user->getPassword())) {
-            SessionManager::setUserId($user->getPassword());
+            SessionManager::setUserId($user->getId());
             return true;
         }
         else {

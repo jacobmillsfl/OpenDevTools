@@ -5,7 +5,7 @@
  * Description: This file is the about page
  */
 
-/*arbitrary change */
+session_start();
 
 include_once("DAL/TeamMember.php");
 
