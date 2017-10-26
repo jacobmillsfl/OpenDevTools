@@ -45,9 +45,10 @@ include_once("Utilities/SessionManager.php");
 
                 echo "<div class=\"carousel-item" . ($active ? " active" : "") . "\" style=\"background-image: url('" . $banner->getImgUrl() . "')\">";
                 echo "<div class=\"carousel-caption d-none d-md-block\">";
+                echo "<div class=\"carousel-box\">";
                 echo "<h3>" . $banner->getTitle() . "</h3>";
                 echo "<p>" . $banner->getMessage() . "</p>";
-                echo "</div>";
+                echo "</div></div>";
                 echo "</div>";
                 $active = false;
             }
