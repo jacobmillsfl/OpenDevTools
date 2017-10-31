@@ -1,3 +1,14 @@
+<?php
+/**
+ * Author: Jacob Mills
+ * Date: 10/31/2017
+ * Description: This page allows access to the TaskTracker service.
+ */
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,10 +27,9 @@
     </h1>
 
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="index.php">Home</a>
-        </li>
-        <li class="breadcrumb-item active">Services</li>
+        <li class="breadcrumb-item"><strong>Services</strong></li>
+        <li class="breadcrumb-item"><a href="/dalgen">Dalgen</a></li>
+        <li class="breadcrumb-item active"><a href="/tasktracker">TaskTracker</a></li>
     </ol>
 
     <div class="row">
