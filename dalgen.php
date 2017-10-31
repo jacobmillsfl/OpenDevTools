@@ -64,11 +64,11 @@ session_start();
             <div class="card h-100">
                 <h4 class="card-header">Download Now</h4>
                 <div class="card-body">
-                    <p class="card-text">This product is still under active development, but feel free to try the <a
-                            href="https://www.github.com/h0r53/DALGen">BETA</a> version.</p>
+                    <p class="card-text">This product is still under active development, but feel free to try the current stable release. Also, if you're interested in contributing to the DALGen project, check out our <a
+                            href="https://www.github.com/h0r53/DALGen">GitHub</a>.</p>
                 </div>
                 <div class="card-footer">
-                    <a href="https://www.github.com/h0r53/DALGen" class="btn btn-primary">Download Beta</a>
+                    <a href="https://www.opendevtools.org/files/DALGen_Beta.zip" class="btn btn-primary">Download</a>
                 </div>
             </div>
         </div>
