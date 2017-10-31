@@ -48,6 +48,7 @@ include_once("Utilities/SessionManager.php");
                         echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"login.php\">Login</a></li>";
                     } else {
                         echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"account.php\">Account</a></li>";
+                        echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"logout\">Logout</a></li>";
                     }
                     ?>
                 </li>
