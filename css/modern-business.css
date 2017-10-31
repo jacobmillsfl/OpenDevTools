@@ -34,4 +34,21 @@ body {
     background: rgba(0, 0, 0, 0.3);
     border-radius:5px;
     text-shadow: black 2px 1px;
-}W
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    margin: 0 0 120px;
+    /* bottom = footer height */
+}
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 120px;
+    width: 100%;
+    overflow:hidden;
+}

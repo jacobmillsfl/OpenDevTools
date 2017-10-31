@@ -26,16 +26,8 @@ include_once("DAL/TeamMember.php");
 <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">OpenDevTools
-        <small>About Us</small>
+    <h1 class="mt-4 mb-3">About Us
     </h1>
-
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="index.php">Home</a>
-        </li>
-        <li class="breadcrumb-item active">About</li>
-    </ol>
 
     <!-- Intro Content -->
     <div class="row">
@@ -51,7 +43,7 @@ include_once("DAL/TeamMember.php");
                 engineers ranging from individuals to large organizations.</p>
             <p>Our mission is to provide project management solutions and software development utilities that assist
                 clients from individual developers to large corporations. OpenDevTools will encourage adoption of our
-                software solutions by releasing them as opensource tools, encouraging expert community feedback, and
+                software solutions by releasing them as open-source tools, encouraging expert community feedback, and
                 implementing the latest security standards throughout our design to ensure confidentiality, integrity,
                 and reliability.</p>
         </div>

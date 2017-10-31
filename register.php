@@ -71,7 +71,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="col-lg-12 mb-4 mt-4">
                     <br/><br/>
                     <h3>Register</h3> <small></small>
-                    <br/><br/>
+                    <br/>
+                    <?php
+                    if ($errorMessage != "")
+                    {
+                        echo "<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\">";
+                        echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">";
+                        echo "<span aria-hidden=\"true\">&times;</span>";
+                        echo "</button>";
+                        echo "<strong>Error</strong> " . $errorMessage;
+                        echo "</div>";
+                    }
+                    ?>
+
+
+
+
+
+
+                    <br/>
                     <form name="register" id="registerForm" method="post" validate>
                         <div class="row">
                             <div class="control-group form-group col-lg-6 ">
@@ -136,12 +154,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </div>
                             </div>
                         </div>
-                        <?php
-                        if ($errorMessage != "")
-                        {
-                            echo "<div id=\"success\">" . $errorMessage . "</div>";
-                        }
-                        ?>
                         <button type="submit" class="btn btn-primary float-right">Register</button>
                     </form>
                 </div>
