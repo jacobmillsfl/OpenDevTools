@@ -86,25 +86,25 @@ include_once("DAL/TeamMember.php");
     <div class="row">
         <div class="col-lg-2 col-sm-4 mb-4">
             <img class="img-fluid"
-                 src="https://www.digitalocean.com/assets/media/logos-badges/png/DO_Logo_Vertical_Blue-6321464d.png"
+                 src="images/DigitalOcean_Logo.png"
                  alt="DigitalOcean">
         </div>
         <div class="col-lg-2 col-sm-4 mb-4">
-            <img class="img-fluid" src="http://design.ubuntu.com/wp-content/uploads/ubuntu-logo112.png" alt="Ubuntu">
+            <img class="img-fluid" src="images/Ubuntu_Logo.png" alt="Ubuntu">
         </div>
         <div class="col-lg-2 col-sm-4 mb-4">
-            <img class="img-fluid" src="https://blog.netapsys.fr/wp-content/uploads/2016/08/Nginx-Logo.png" alt="Nginx">
+            <img class="img-fluid" src="images/Nginx_Logo.png" alt="Nginx">
         </div>
         <div class="col-lg-2 col-sm-4 mb-4">
             <img class="img-fluid"
-                 src="https://d3nmt5vlzunoa1.cloudfront.net/phpstorm/files/2015/12/PhpStorm_400x400_Twitter_logo_white.png"
+                 src="images/PhpStorm_Logo.png"
                  alt="PHPStorm">
         </div>
         <div class="col-lg-2 col-sm-4 mb-4">
-            <img class="img-fluid" src="https://itbeginner.net/wp-content/uploads/2017/07/xampp-logo.jpg" alt="XAMPP">
+            <img class="img-fluid" src="images/Xampp_Logo.jpg" alt="XAMPP">
         </div>
         <div class="col-lg-2 col-sm-4 mb-4">
-            <img class="img-fluid" src="http://www.softura.com/wp-content/uploads/2014/01/mySQL-logo.jpg" alt="MySQL">
+            <img class="img-fluid" src="images/MySQL_Logo.jpg" alt="MySQL">
         </div>
     </div>
     <!-- /.row -->
