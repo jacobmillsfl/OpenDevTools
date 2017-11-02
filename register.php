@@ -9,6 +9,7 @@ session_start();
 
 include_once("Utilities/SessionManager.php");
 include_once("Utilities/Authentication.php");
+include_once("Utilities/Mailer.php");
 include_once("DAL/User.php");
 
 $errorMessage = "";
@@ -44,10 +45,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $errorMessage = "An error occurred during the creation of this user account. Please try again. If the problem continues, contact OpenDevTools support at opendevtools@gmail.com";
         }
         else {
-            // Temporary Test Code
+            // Set session values for successful login
             $userId = $user->getId();
             SessionManager::setUserId($userId);
-            header("location: /index.php");
+
+            // Send registration email
+            Mailer::sendRegistrationEmail($user->getEmail(),$user->getUsername());
+
+            // Redirect to account page
+            //header("location: /account");
         }
     }
 }
