@@ -53,7 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             Mailer::sendRegistrationEmail($user->getEmail(),$user->getUsername());
 
             // Redirect to account page
-            //header("location: /account");
+            header("location: /account");
         }
     }
 }
