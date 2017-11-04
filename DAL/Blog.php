@@ -229,18 +229,21 @@ class Blog {
 
 		$result = $stmt->get_result();
 		if (!$result) die($conn->error);
-		if ($result->num_rows > 0) {
-			$arr = array();
+        $arr = array();
+        if ($result->num_rows > 0) {
 			while ($row = $result->fetch_assoc()) {
 				$blog = new Blog($row['id'],$row['userId'],$row['title'],$row['content'],$row['imgUrl'],$row['createDate'],$row['blogCategoryId'],$row['views']);
 				$arr[] = $blog;
 			}
-			return $arr;
 		}
 		else {
-			die("The query yielded zero results.No rows found.");
+
+			//die("The query yielded zero results.No rows found.");
 		}
-	}
+
+        return $arr;
+
+    }
 
 
 	public static function remove($paramId) {
