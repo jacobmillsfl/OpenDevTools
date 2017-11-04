@@ -141,7 +141,7 @@ include_once("Utilities/SessionManager.php");
                         data access.</p>
                 </div>
                 <div class="card-footer">
-                    <a href="dalgen.php" class="btn btn-primary">Learn More</a>
+                    <a href="dalgen" class="btn btn-primary">Learn More</a>
                 </div>
             </div>
         </div>
@@ -157,7 +157,7 @@ include_once("Utilities/SessionManager.php");
                         Users can update their assigned tasks with comments and mark tasks as complete.</p>
                 </div>
                 <div class="card-footer">
-                    <a href="tasktracker.php" class="btn btn-primary">Learn More</a>
+                    <a href="tasktracker" class="btn btn-primary">Learn More</a>
                 </div>
             </div>
         </div>

@@ -26,7 +26,7 @@
 
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="index.php">Home</a>
+            <a href="index">Home</a>
         </li>
 
         <li class="breadcrumb-item active"> Blog</li>
