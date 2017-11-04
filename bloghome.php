@@ -49,13 +49,13 @@
                     echo "<div class=\"card-body\">";
                     echo "<h2 class=\"card-title\">" . $blogItem->getTitle() . "</h2>";
                     echo "<p class=\"card-text\">" . $blogItem->getContent() . "</p>";
-                    //echo "<a href=\"#\" class=\"btn btn-primary\">" Read More "</a>";
+                    //echo "<a href=\"#\" class=\"btn btn-primary\">" Read More "</a>"; //fix this
                     echo"</div>";
                     echo "<div class=\"card-footer text muted\">"  . $blogItem->getCreateDate() . "</div>";
                     echo "<a href=\"#\">".$blogItem-> getUserId(). "</a>";
                     echo "</div>";
                     echo"</div>";
-                    
+
                 }
         ?>
 
