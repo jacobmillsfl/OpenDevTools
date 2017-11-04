@@ -1,3 +1,14 @@
+<?php
+/**
+ * Author: Jacob Mills
+ * Date: 10/31/2017
+ * Description: This page allows access to the Dalgen software.
+ */
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,10 +27,9 @@
     </h1>
 
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="index.php">Home</a>
-        </li>
-        <li class="breadcrumb-item active">Services</li>
+        <li class="breadcrumb-item"><strong>Services</strong></li>
+        <li class="breadcrumb-item"><a href="/dalgen">Dalgen</a></li>
+        <li class="breadcrumb-item active"><a href="/tasktracker">TaskTracker</a></li>
     </ol>
 
     <div class="row">
@@ -54,11 +64,11 @@
             <div class="card h-100">
                 <h4 class="card-header">Download Now</h4>
                 <div class="card-body">
-                    <p class="card-text">This product is still under active development, but feel free to try the <a
-                            href="https://www.github.com/h0r53/DALGen">BETA</a> version.</p>
+                    <p class="card-text">This product is still under active development, but feel free to try the current stable release. Also, if you're interested in contributing to the DALGen project, check out our <a
+                            href="https://www.github.com/h0r53/DALGen">GitHub</a>.</p>
                 </div>
                 <div class="card-footer">
-                    <a href="https://www.github.com/h0r53/DALGen" class="btn btn-primary">Download Beta</a>
+                    <a href="https://www.opendevtools.org/files/DALGen_Beta.zip" class="btn btn-primary">Download</a>
                 </div>
             </div>
         </div>
@@ -68,9 +78,6 @@
                 <div class="card-body">
                     <p class="card-text">Coming Soon</p>
                 </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Learn More</a>
-                </div>
             </div>
         </div>
         <div class="col-lg-4 mb-4">
@@ -78,9 +85,6 @@
                 <h4 class="card-header">Object-Relational Mapping</h4>
                 <div class="card-body">
                     <p class="card-text">Coming Soon</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Learn More</a>
                 </div>
             </div>
         </div>

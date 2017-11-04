@@ -167,6 +167,11 @@ class User {
 		 $this->setCreateDate($row['createDate']);
 		 $this->setRoleId($row['roleId']);
 		}
+
+		if ($this->getImgUrl() == '')
+        {
+            $this->setImgUrl('/images/missing.png');
+        }
 	}
 
 

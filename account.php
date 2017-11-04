@@ -42,7 +42,7 @@ else{
                 <div class="col-lg-9 col-sm-6">
                     <div class="row">
                         <?php
-                        echo "<h3>" . $user->getUsername() . "</h3>"
+                        echo "<h2>" . $user->getUsername() . "</h2>"
                         ?>
                     </div>
                     <div class="row">
@@ -52,12 +52,12 @@ else{
                     </div>
                     <div class="row">
                         <?php
-                            echo "<a href='mailto:" . $user->getEmail() . "'></a>";
+                            echo "<p><a href='mailto:" . $user->getEmail() . "'>" . $user->getEmail() . "</a></p>";
                         ?>
                     </div>
                     <div class="row">
                         <?php
-                        echo "<a href='" . $user->getGithubUrl() . "'></a>";
+                        echo "<p><a href='" . $user->getGithubUrl() . "'>" . $user->getGithubUrl() . "</a></p>";
                         ?>
                     </div>
                     <div class="row">
