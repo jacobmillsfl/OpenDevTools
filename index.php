@@ -12,6 +12,17 @@ include_once("Utilities/SessionManager.php");
 
 
 ?>
+<?php
+/**
+ * Author: Carla Pastor
+ * Date: 11/6/2017
+ * Description: part of this file will make possible the direction of this page in its Spanish version
+ * UBICACION TEMPORAL
+ * <span title="Spanish"><a lang="es" href="qa-html-language-declarations.es">Español</a></span>
+ */
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 

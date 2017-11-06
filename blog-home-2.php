@@ -1,3 +1,15 @@
+<?php
+
+/* Blog home page in progress
+* user Carla Pastor
+*/
+
+session_start();
+
+include_once("DAL/Blog.php");
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,103 +23,83 @@
 <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">Blog Home Two
-        <small>Subheading</small>
+    <h1 class="mt-4 mb-3">OpenDevTools
+        <small>Blog Home</small>
     </h1>
 
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
             <a href="index">Home</a>
         </li>
-        <li class="breadcrumb-item active">Blog Home 2</li>
+
+        <li class="breadcrumb-item active"> Blog</li>
     </ol>
 
-    <!-- Blog Post -->
-    <div class="card mb-4">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-lg-6">
-                    <a href="#">
-                        <img class="img-fluid rounded" src="/images/blog1.jpg" alt="">
-                    </a>
-                </div>
-                <div class="col-lg-6">
-                    <h2 class="card-title">El éxito del open source</h2>
-                    <p class="card-text">
-                        El modelo open source podría y debería ser aplicado en todo tipo de investigación y desarrollo,
-                        no sólo en el de software. Si el esfuerzo científico adoptase un modelo abierto se ahorrarían costos y esfuerzos en procesos redundantes,
-                        y se podría acelerar la vía mediante la cual se obtienen resultados.
 
 
+    <div class="row">
 
-                    </p>
-                    <a href="#" class="btn btn-primary">Read More &rarr;</a>
-                </div>
-            </div>
+        <!-- Blog Entries Column -->
+        <!--<div class="col-md-8"> -->
+
+        <?php
+        $blogList=Blog::loadall();
+        foreach ($blogList as $blogItem){
+            echo"<div class =\"col-md-8\">";
+            echo "<div class=\"card mb-4\">";
+            echo "<img class =\"card-img-top\" src=\"" .$blogItem->getImgUrl() ."\" alt=\"\">";
+            echo "<div class=\"card-body\">";
+            echo "<h2 class=\"card-title\">" . $blogItem->getTitle() . "</h2>";
+            echo "<p class=\"card-text\">" . $blogItem->getContent() . "</p>";
+            //echo "<a href=\"#\" class=\"btn btn-primary\">" Read More "</a>"; //fix this
+            echo"</div>";
+            echo "<div class=\"card-footer text muted\">"  . $blogItem->getCreateDate() . "</div>";
+            echo "<a href=\"#\">".$blogItem-> getUserId(). "</a>";
+            echo "</div>";
+            echo"</div>";
+
+        }
+        ?>
+
+    </div><!-- /.row -->
+
+    <!--</div> --> <!--/Blog entries column -->
+
+    <!-- Our Partners -->
+    <h2>Our Partners</h2>
+    <div class="row">
+        <div class="col-lg-2 col-sm-4 mb-4">
+            <img class="img-fluid"
+                 src="https://www.digitalocean.com/assets/media/logos-badges/png/DO_Logo_Vertical_Blue-6321464d.png"
+                 alt="DigitalOcean">
         </div>
-        <div class="card-footer text-muted">
-            Posted on Noviembre 4, 2017 by
-            <a href="#">Carla Pasor</a>
+        <div class="col-lg-2 col-sm-4 mb-4">
+            <img class="img-fluid" src="http://design.ubuntu.com/wp-content/uploads/ubuntu-logo112.png" alt="Ubuntu">
         </div>
-    </div>
-
-    <!-- Blog Post -->
-    <div class="card mb-4">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-lg-6">
-                    <a href="#">
-                        <img class="img-fluid rounded" src="https://images.tynker.com/blog/wp-content/uploads/hero-girl-coding.png" alt="">
-                    </a>
-                </div>
-                <div class="col-lg-6">
-                    <h2 class="card-title">Four Reasons Why Kids Should Learn to Program</h2>
-                    <p class="card-text">
-
-                        In recent years, the importance of programming has become a subject of increasing international
-                        awareness, moving from the narrow domain of the “geek” to the broader world, including the K-12
-                        education space. Earlier this year, President Obama endorsed mandatory computer programming
-                        education in schools. And recently,
-                        a viral video from code.org encouraged students to learn to code. For those of us in Silicon Valley,
-                        it is especially clear that the ability to code is taking on an unprecedented level of importance.
-
-                        Programming hasn’t become this popular by accident. There is a growing understanding that knowing how
-                        to program is essential, especially for younger generations. Simply memorizing facts is less and less
-                        relevant in a world where Google can satisfy just about any question in a matter of milliseconds;
-                        it is technical skills that will enable children to succeed, and that set of skills must include programming.
-
-
-                        </p>
-                    <a href="#" class="btn btn-primary">Read More &rarr;</a>
-                </div>
-            </div>
+        <div class="col-lg-2 col-sm-4 mb-4">
+            <img class="img-fluid" src="https://blog.netapsys.fr/wp-content/uploads/2016/08/Nginx-Logo.png" alt="Nginx">
         </div>
-        <div class="card-footer text-muted">
-            Posted on Noviembre 4, 2017 by
-            <a href="#"> Tynker.com</a>
+        <div class="col-lg-2 col-sm-4 mb-4">
+            <img class="img-fluid"
+                 src="https://d3nmt5vlzunoa1.cloudfront.net/phpstorm/files/2015/12/PhpStorm_400x400_Twitter_logo_white.png"
+                 alt="PHPStorm">
+        </div>
+        <div class="col-lg-2 col-sm-4 mb-4">
+            <img class="img-fluid" src="https://itbeginner.net/wp-content/uploads/2017/07/xampp-logo.jpg" alt="XAMPP">
+        </div>
+        <div class="col-lg-2 col-sm-4 mb-4">
+            <img class="img-fluid" src="http://www.softura.com/wp-content/uploads/2014/01/mySQL-logo.jpg" alt="MySQL">
         </div>
     </div>
+    <!-- /.row -->
+
+
+</div><!-- /container -->
 
 
 
 
-
-
-    <!-- Pagination -->
-    <ul class="pagination justify-content-center mb-4">
-        <li class="page-item">
-            <a class="page-link" href="#">&larr; Older</a>
-        </li>
-        <li class="page-item disabled">
-            <a class="page-link" href="#">Newer &rarr;</a>
-        </li>
-    </ul>
-
-</div>
-
-</div>
-<!-- /.container -->
-
+<!-- Footer -->
 <?php include "footer.php" ?>
 
 <!-- Bootstrap core JavaScript -->
@@ -115,6 +107,11 @@
 <script src="vendor/popper/popper.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
+
+
 </body>
 
+
 </html>
+
+
