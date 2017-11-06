@@ -32,9 +32,9 @@ include_once("Utilities/SessionManager.php");
                         Blog
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                        <a class="dropdown-item" href="bloghome">Blog Home 1</a>
-                        <a class="dropdown-item" href="blog-home-2">Blog Home 2</a>
-                        <a class="dropdown-item" href="blog-post">Blog Sample</a>
+                        <a class="dropdown-item" href="bloghome">Blog Home</a>
+                        <a class="dropdown-item" href="blogsample1">Go</a>
+                        <a class="dropdown-item" href="blogsample2">Open Source</a>
                     </div>
                 </li>
                 <li class="nav-item">

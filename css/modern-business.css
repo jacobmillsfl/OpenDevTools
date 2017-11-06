@@ -1,11 +1,29 @@
-/*!
- * Start Bootstrap - Modern Business (http://startbootstrap.com/template-overviews/modern-business)
- * Copyright 2013-2017 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-logomodern-business-nav/blob/master/LICENSE)
+/*
+
+
+
  */
+
+/* Primary Site Elements */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
 
 body {
     padding-top: 54px;
+    /* margin: 0 0 120px; */
+    top: 0px !important;
+}
+
+footer {
+    position: absolute!important;
+    left: 0!important;
+    bottom: 0!important;
+    height: 120px!important;
+    width: 100%!important;
+    overflow:hidden!important;
 }
 
 @media (min-width: 992px) {
@@ -13,6 +31,12 @@ body {
         padding-top: 56px;
     }
 }
+
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+
+/* Index Page */
 
 .carousel-item {
     height: 65vh;
@@ -36,19 +60,9 @@ body {
     text-shadow: black 2px 1px;
 }
 
-html {
-    position: relative;
-    min-height: 100%;
-}
-body {
-    margin: 0 0 120px;
-    /* bottom = footer height */
-}
-footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 120px;
-    width: 100%;
-    overflow:hidden;
+/* Blog Home Page */
+
+.blog-home-img {
+    max-height: 300px !important;
+    max-width: 700px !important;
 }
