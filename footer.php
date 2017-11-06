@@ -4,17 +4,20 @@
  * User: robsm_5mj
  * Date: 10/3/2017
  * Time: 9:38 AM
+ *
+ * Private Policy && Donation button. Author CarlaPastor. 2017
  */
 ?>
 <!-- Footer -->
 <footer class="py-5 bg-dark">
     <div class="container">
         <div class="">
-            <p class="m-0 text-center text-white">Copyright &copy; opendevtools.org 2017 - <a href="/policy.php">Private
-                    Policy</a></p>
+            <p class="m-0 text-center text-white">Copyright &copy; opendevtools.org 2017 - <a href="/policy.php"><b>Private
+                    Policy</a></p></b>
+
             <form class="m-2 text-center" action="https://www.paypal.com/cgi-bin/webscr" method="post">
 
-                <!-- Identify your business so that you can collect the payments. -->
+                <!--- Identify our business so that we can collect the donations. -->
                 <input type="hidden" name="business"
                        value="opendevtools@gmail.com">
 
