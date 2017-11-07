@@ -56,8 +56,7 @@ include_once("DAL/TeamMember.php");
     <div class="row">
         <?php
 
-        // Change this to be TeamMember::loadall()
-        //  Then, use the get methods to dynamically display MemberImgUrl, MemberName, MemberBio, and MemberEmail
+        // uses the loadall() method from TeamMember.php to dynamically load member images, names, titles, bios, and emails from database
 
         $memberList = TeamMember::loadall();
         foreach ($memberList as $member) {
