@@ -61,10 +61,10 @@ session_start();
                 <h4 class="card-header">Download Now</h4>
                 <div class="card-body">
                     <p class="card-text">This product is still under active development, but feel free to try the <a
-                                href="http://ww2.cs.fsu.edu/~smitha/cop4710/login.phpn">BETA</a> version.</p>
+                                href="https://tasktracker.opendevtools.org">BETA</a> version.</p>
                 </div>
                 <div class="card-footer">
-                    <a href="http://ww2.cs.fsu.edu/~smitha/cop4710/login.php" class="btn btn-primary">Access Beta</a>
+                    <a href="https://tasktracker.opendevtools.org" class="btn btn-primary">Access Beta</a>
                 </div>
             </div>
         </div>
