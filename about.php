@@ -32,7 +32,7 @@ include_once("DAL/TeamMember.php");
     <!-- Intro Content -->
     <div class="row">
         <div class="col-lg-6">
-            <img class="img-fluid rounded mb-4" src="/images/opendevtoolslogo.PNG" alt="logo">
+            <img class="img-fluid rounded mb-4" src="/images/opendevtoolslogo.png" alt="logo">
         </div>
         <div class="col-lg-6">
             <h2>Background</h2>
