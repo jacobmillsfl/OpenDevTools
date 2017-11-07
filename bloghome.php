@@ -37,6 +37,8 @@ include_once("DAL/Blog.php");
         <!-- Blog Entries Column -->
         <div class="col-md-8">
 
+            <!-- uses the loadall() method from Blog.php to dynamically load blog images, titles, contents, dates, and user IDs -->
+
         <?php
         $blogList=Blog::loadall();
         foreach ($blogList as $blogItem){
