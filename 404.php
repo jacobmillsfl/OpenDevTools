@@ -1,3 +1,8 @@
+<?php
+    // Description: This is a 404 page for invalid requests
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 

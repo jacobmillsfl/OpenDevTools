@@ -58,7 +58,7 @@ session_start();
     <div class="row">
         <div class="col-lg-4 mb-4">
             <div class="card h-100">
-                <h4 class="card-header">Download Now</h4>
+                <h4 class="card-header">Access Now</h4>
                 <div class="card-body">
                     <p class="card-text">This product is still under active development, but feel free to try the <a
                                 href="https://tasktracker.opendevtools.org">BETA</a> version.</p>
