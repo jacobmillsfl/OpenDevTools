@@ -79,11 +79,11 @@ include_once("DAL/Blog.php");
             <div class="card mb-4">
                 <img class="card-img-top blog-home-img" src="/images/opensource.Carla.png" alt="Card image cap">
                 <div class="card-body">
-                    <h2 class="card-title">El éxito del Open Source</h2>
-                    <p class="card-text">La definición básica de open source es aquella que dice que el código fuente de un programa puede
-                        ser libremente descargado, utilizado, modificado y redistribuido por cualquiera. El modelo open
-                        source podría y debería ser aplicado en todo tipo de investigación y desarrollo, no sólo en el de
-                        software.</p>
+                    <h2 class="card-title">The success of Open Source</h2>
+                    <p class="card-text">A fundamental principle of open-source development is that the source code
+                        should be freely available. The source code of the program can be freely downloaded, used,
+                        modified and redistributed by anyone. The open source model could and should be applied in
+                        all types of research and development, not only in software.</p>
                     <a href="/blogsample2" class="btn btn-primary">Read More &rarr;</a>
                 </div>
                 <div class="card-footer text-muted">

@@ -20,14 +20,14 @@
 
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-4 mb-3">Blog
-        <small>- Spanish Section</small>
+        <small>- Open Source </small>
     </h1>
 
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
             <a href="index">Home</a>
         </li>
-        <li class="breadcrumb-item active">Blog - Spanish Section</li>
+        <li class="breadcrumb-item active">Blog </li>
     </ol>
 
     <!-- Blog Post -->
@@ -41,29 +41,26 @@
                 </div>
                 <div class="col-lg-6">
 
-                    <h2 class="card-title">El éxito del Open Source</h2>
+                    <h2 class="card-title">The success of Open Source</h2>
                     <p class="card-text">
 
                     <p style="text-align:justify;">
-                        La definición básica de open source es aquella que dice que el código fuente de un programa puede
-                        ser libremente descargado, utilizado, modificado y redistribuido por cualquiera. El modelo open
-                        source podría y debería ser aplicado en todo tipo de investigación y desarrollo, no sólo en el de
-                        software.
-                        Muchas de las compañías más exitosas del mundo atribuyen al menos cierta parte de su
-                        éxito a plataformas open source: Amazon utiliza Apache como servidor web, grandes partes de Yahoo!
-                        están construidas sobre Linux, FreeBSD y Apache, escritas en PHP y Perl; Google ha basado completamente
-                        en Linux su sistema operativo móvil Android; Mozilla ha desarrollado Firefox, uno de los navegadores
-                        más usados por años en el mundo. Ahora además ha creado un nuevo sistema operativo para móviles
-                        completamente abierto y con muchísimo potencial : Firefox OS, un gran proyecto open source que viene
-                        a dar vida a terminales de gama media y baja que no habían recibido lo mejor del software actual.
+                        A fundamental principle of open-source development is that the source code should be freely
+                        available. The source code of the program can be freely downloaded, used, modified and
+                        redistributed by anyone. The open source model could and should be applied in all types of
+                        research and development, not only in software. Many of the most successful companies in the
+                        world attribute at least some of their success to open source platforms: Amazon uses Apache as
+                        a web server, large parts of Yahoo! they are built on Linux, FreeBSD and Apache, written in PHP
+                        and Perl; Google has completely based on Linux its Android mobile operating system; Mozilla has
+                        developed Firefox, one of the most used browsers for years in the world.
                     </p>
                     <p style="text-align:justify;">
-                        La flexibilidad del software libre permite abaratar costos en muchos sentidos, y acelerar el
-                        desarrollo de los proyectos al tener menos restricciones que pueden presentarse usando modelos cerrados.
-                        Las libertades terminan siendo importantes para los usuarios, para los desarrolladores y para las
-                        compañías ; y a la vez la sociedad puede adaptar el modelo para hacer florecer la cultura, así como
-                        la investigación científica puede obtener resultados de forma más rápida, que repercutirán en beneficio
-                        del conjunto de la humanidad.
+                        The flexibility of free software makes it possible to reduce costs in many ways and accelerate
+                        the development of projects by having fewer restrictions that can be presented using closed
+                        models. The freedoms end up being important for the users, for the developers and for the
+                        companies; and at the same time, society can adapt the model to make culture flourish, just as
+                        scientific research can obtain results more quickly, which will have an impact on the benefit
+                        of the whole of humanity.
 
                     </p>
                 </div>
