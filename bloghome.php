@@ -56,6 +56,23 @@ include_once("DAL/Blog.php");
         ?>
 
 
+            <!-- Blog Post -->
+            <div class="card mb-4">
+                <img class="card-img-top blog-home-img" src="/images/opensource.Carla.png" alt="Card image cap">
+                <div class="card-body">
+                    <h2 class="card-title">The success of Open Source</h2>
+                    <p class="card-text">A fundamental principle of open-source development is that the source code
+                        should be freely available. The source code of the program can be freely downloaded, used,
+                        modified and redistributed by anyone. The open source model could and should be applied in
+                        all types of research and development, not only in software.</p>
+                    <a href="/blogsample2" class="btn btn-primary">Read More &rarr;</a>
+                </div>
+                <div class="card-footer text-muted">
+                    Posted on Noviembre 4, 2017 by
+                    <a href="#"> Carla Pastor</a>
+                </div>
+            </div>
+
 
             <!-- Blog Post -->
             <div class="card mb-4">
@@ -75,24 +92,7 @@ include_once("DAL/Blog.php");
                 </div>
             </div>
 
-            <!-- Blog Post -->
-            <div class="card mb-4">
-                <img class="card-img-top blog-home-img" src="/images/opensource.Carla.png" alt="Card image cap">
-                <div class="card-body">
-                    <h2 class="card-title">The success of Open Source</h2>
-                    <p class="card-text">A fundamental principle of open-source development is that the source code
-                        should be freely available. The source code of the program can be freely downloaded, used,
-                        modified and redistributed by anyone. The open source model could and should be applied in
-                        all types of research and development, not only in software.</p>
-                    <a href="/blogsample2" class="btn btn-primary">Read More &rarr;</a>
-                </div>
-                <div class="card-footer text-muted">
-                    Posted on Noviembre 4, 2017 by
-                    <a href="#"> Carla Pastor</a>
-                </div>
-            </div>
-
-            <!-- Pagination -->
+                       <!-- Pagination -->
             <ul class="pagination justify-content-center mb-4">
                 <li class="page-item">
                     <a class="page-link" href="#">&larr; Older</a>
