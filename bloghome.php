@@ -22,6 +22,21 @@ include_once("DAL/Blog.php");
         <small>Blog Home</small>
     </h1>
 
+    <?php
+        //if logged in, show button to create blog
+        //$status= SessionManager::getUserId();
+        //if($status==0)
+        //{
+        //    echo '<div class = "text - right">';
+        //        echo '<a href="create - blog" class ="btn btn - info btn - lg">Create Blog</a>';
+        //    echo '</div>';
+        // }
+    ?>
+
+    <div class = "text-right">
+        <a href="create-blog" class ="btn btn-info btn-lg">Create Blog</a>
+    </div>
+
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
             <a href="index">Home</a>
