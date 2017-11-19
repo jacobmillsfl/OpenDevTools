@@ -23,6 +23,13 @@ class Permission {
 	protected $createDate;
 
 
+    /******************************************************************/
+    // Enums
+    /******************************************************************/
+    const ManageBlog = "ManageBlog";
+    const EditBlog = "EditBlog";
+    const CommentBlog = "CommentBlog";
+
 	/******************************************************************/
 	// Constructors
 	/******************************************************************/
@@ -229,4 +236,22 @@ class Permission {
 			die("The query yielded zero results.No rows found.");
 		}
 	}
+
+	public static function checkUserPermission($paramUserId,$paramPermissionName) {
+        include(self::getDbSettings());
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        $stmt = $conn->prepare('CALL usp_Permission_CheckUserPermission(?,?)');
+        $arg1 = Permission::setNullValue($paramUserId);
+        $arg2 = Permission::setNullValue($paramPermissionName);
+        $stmt->bind_param('is',$arg1,$arg2);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if (!$result) die($conn->error);
+        if ($result->num_rows > 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
