@@ -72,7 +72,7 @@ include_once("DAL/Blog.php");
 
 
             <!-- Blog Post -->
-            <div class="card mb-4">
+<!--            <div class="card mb-4">
                 <img class="card-img-top blog-home-img" src="/images/opensource.Carla.png" alt="Card image cap">
                 <div class="card-body">
                     <h2 class="card-title">The success of Open Source</h2>
@@ -86,11 +86,11 @@ include_once("DAL/Blog.php");
                     Posted on Noviembre 4, 2017 by
                     <a href="#"> Carla Pastor</a>
                 </div>
-            </div>
+            </div>-->
 
 
             <!-- Blog Post -->
-            <div class="card mb-4">
+<!--            <div class="card mb-4">
                 <img class="card-img-top blog-home-img" src="/images/go_lang_mascot_by_kirael_art-cpp15d.gif" alt="Blog Image">
                 <div class="card-body">
                     <h2 class="card-title">Go, el mejor lenguaje de programación de código abierto creado por Google</h2>
@@ -105,7 +105,7 @@ include_once("DAL/Blog.php");
                     Posted on Noviembre 5, 2017 by
                     <a href="#"> Carla Pastor</a>
                 </div>
-            </div>
+            </div>-->
 
                        <!-- Pagination -->
             <ul class="pagination justify-content-center mb-4">
