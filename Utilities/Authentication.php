@@ -7,6 +7,7 @@
 
 include_once("SessionManager.php");
 include_once("DAL/User.php");
+include_once("DAL/Permission.php");
 
 class Authentication
 {
@@ -37,6 +38,11 @@ class Authentication
         $user->save();
 
         return $user;
+    }
+
+    public static function hasPermission($userId,$permissionName)
+    {
+        return Permission::checkUserPermission($userId,$permissionName);
     }
 }
 
