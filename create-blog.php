@@ -11,6 +11,7 @@ include_once("Utilities/SessionManager.php");
 include_once("Utilities/Authentication.php");
 include_once("Utilities/Mailer.php");
 include_once("DAL/User.php");
+include_once("DAL/Blog.php");
 
 $errorMessage = "";
 
@@ -19,11 +20,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $title = $_POST["blogname"];
     $imgUrl = $_POST["imgUrl"];
-    $category = $_POST["blogcategory"];
+    $categoryId = $_POST["blogcategory"];
     $content = $_POST["blogcontent"];
     $currentDate = date('Y-m-d H:i:s');
-    //$uid = getUserId();
+    $uid = SessionManager::getUserId();
     //insert blog into table
+
+    $blog = new Blog();
+    $blog->setTitle($title);
+    $blog->setImgUrl($imgUrl);
+    $blog->setBlogCategoryId($categoryId);
+    $blog->setContent($content);
+    $blog->setCreateDate($currentDate);
+    $blog->setUserId($uid);
+    $blog->save();
+
+
     //direct back to bloghome page
      header("location: /bloghome");
 
