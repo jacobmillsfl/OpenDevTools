@@ -157,6 +157,14 @@ class Blog {
 
 
 	public function save() {
+
+	    // Default Blog image to site logo
+	    if ($this->getImgUrl() == "")
+        {
+            $this->setImgUrl("/images/opendevtoolslogo.png");
+        }
+
+
 		if ($this->getId() == 0)
 			$this->insert();
 		else

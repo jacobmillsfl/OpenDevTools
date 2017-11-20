@@ -8,7 +8,7 @@ Description:	Creates the RoleToPermission table and respective stored procedures
 
 USE opendevtools;
 
-DROP TABLE `roletopermission`;
+DROP TABLE IF EXISTS `roletopermission`;
 DROP PROCEDURE IF EXISTS `usp_RoleToPermission_LoadAll`;
 DROP PROCEDURE IF EXISTS `usp_RoleToPermission_Search`;
 DROP PROCEDURE IF EXISTS `usp_RoleToPermission_Add`;
@@ -29,7 +29,7 @@ userRoleId INT,
 permissionId INT,
 CONSTRAINT pk_RoleToPermission_Id PRIMARY KEY (Id)
 ,
-CONSTRAINT fk_RoleToPermission_userRoleId_User_Id FOREIGN KEY (userRoleId) REFERENCES User (Id)
+CONSTRAINT fk_RoleToPermission_userRoleId_User_Id FOREIGN KEY (userRoleId) REFERENCES UserRole (Id)
 ,
 CONSTRAINT fk_RoleToPermission_permissionId_Permission_Id FOREIGN KEY (permissionId) REFERENCES Permission (Id)
 );
