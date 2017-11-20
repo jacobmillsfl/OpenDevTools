@@ -12,35 +12,40 @@ include_once("Utilities/Authentication.php");
 include_once("Utilities/Mailer.php");
 include_once("DAL/User.php");
 include_once("DAL/Blog.php");
+include_once("DAL/Permission.php");
 
 $errorMessage = "";
-
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-
-
-    $title = $_POST["blogname"];
-    $imgUrl = $_POST["imgUrl"];
-    $categoryId = $_POST["blogcategory"];
-    $content = $_POST["blogcontent"];
-    $currentDate = date('Y-m-d H:i:s');
-    $uid = SessionManager::getUserId();
-    //insert blog into table
-
-    $blog = new Blog();
-    $blog->setTitle($title);
-    $blog->setImgUrl($imgUrl);
-    $blog->setBlogCategoryId($categoryId);
-    $blog->setContent($content);
-    $blog->setCreateDate($currentDate);
-    $blog->setUserId($uid);
-    $blog->save();
-
-
-    //direct back to bloghome page
-     header("location: /bloghome");
-
+$userId = SessionManager::getUserId();
+if (!Authentication::hasPermission($userId,Permission::ManageBlog))
+{
+    header("location: /bloghome");
 }
+else
+{
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
 
+        $title = $_POST["blogname"];
+        $imgUrl = $_POST["imgUrl"];
+        $categoryId = $_POST["blogcategory"];
+        $content = $_POST["blogcontent"];
+        $currentDate = date('Y-m-d H:i:s');
+        //insert blog into table
+
+        $blog = new Blog();
+        $blog->setTitle($title);
+        $blog->setImgUrl($imgUrl);
+        $blog->setBlogCategoryId($categoryId);
+        $blog->setContent($content);
+        $blog->setCreateDate($currentDate);
+        $blog->setUserId($userId);
+        $blog->save();
+
+
+        //direct back to bloghome page
+        header("location: /bloghome");
+
+    }
+}
 ?>
 
 

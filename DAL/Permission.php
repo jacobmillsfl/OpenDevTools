@@ -27,8 +27,8 @@ class Permission {
     // Enums
     /******************************************************************/
     const ManageBlog = "ManageBlog";
-    const EditBlog = "EditBlog";
     const CommentBlog = "CommentBlog";
+    const EditBlogComment = "EditBlogComment";
 
 	/******************************************************************/
 	// Constructors

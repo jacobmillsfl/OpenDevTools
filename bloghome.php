@@ -4,6 +4,14 @@ session_start();
 include_once("DAL/Blog.php");
 include_once("DAL/BlogCategory.php");
 include_once("DAL/User.php");
+include_once("DAL/Permission.php");
+include_once("Utilities/Authentication.php");
+
+$userId = SessionManager::getUserId();
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -84,10 +92,15 @@ include_once("DAL/User.php");
 
         <!-- Sidebar Widgets Column -->
         <div class="col-md-4">
-            <div class ="text-center">
-                <a href="create-blog" class ="btn btn-primary btn-lg btn-block"><i class=""></i> Create Blog</a>
-            </div>
-            <br>
+            <?php
+                if (Authentication::hasPermission($userId,Permission::ManageBlog))
+                {
+                    echo "<div class =\"text-center\">";
+                    echo "<a href=\"create-blog\" class =\"btn btn-primary btn-lg btn-block\"><i class=\"\"></i>Create Blog</a>";
+                    echo "</div>";
+                    echo "<br>";
+                }
+            ?>
             <!-- Search Widget -->
             <div class="card mb-4">
                 <h5 class="card-header">Search</h5>
