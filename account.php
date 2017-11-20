@@ -31,6 +31,9 @@ else{
             <h1>Account</h1>
             <br/>
             <br/>
+            <div class = "text-right">
+                <a href="edit-user.php" class ="btn btn-info btn-lg">Edit Profile</a>
+            </div>
             <div class="row">
                 <div class="col-lg-3 col-sm-6">
                     <div>
