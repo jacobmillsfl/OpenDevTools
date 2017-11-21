@@ -33,3 +33,21 @@ BEGIN
 	ORDER BY `Blog`.`createDate` DESC;
 END //
 DELIMITER ;
+
+
+DELIMITER //
+CREATE PROCEDURE `opendevtools`.`usp_Blog_LoadAll`()
+BEGIN
+	SELECT
+		`Blog`.`id` AS `id`,
+		`Blog`.`userId` AS `userId`,
+		`Blog`.`title` AS `title`,
+		`Blog`.`content` AS `content`,
+		`Blog`.`imgUrl` AS `imgUrl`,
+		`Blog`.`createDate` AS `createDate`,
+		`Blog`.`blogCategoryId` AS `blogCategoryId`,
+		`Blog`.`views` AS `views`
+	FROM `Blog`
+	ORDER BY `Blog`.`createDate` DESC;
+END //
+DELIMITER ;
