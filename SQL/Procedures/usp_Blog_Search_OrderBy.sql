@@ -25,7 +25,7 @@ BEGIN
 		COALESCE(Blog.`id`,0) = COALESCE(paramid,Blog.`id`,0)
 		AND COALESCE(Blog.`userId`,0) = COALESCE(paramuserId,Blog.`userId`,0)
 		AND COALESCE(Blog.`title`,'') = COALESCE(paramtitle,Blog.`title`,'')
-		AND COALESCE(Blog.`content`,'') = COALESCE(paramcontent,Blog.`content`,'')
+		AND COALESCE(Blog.`content`,'') LIKE COALESCE('%'+paramcontent+'%',Blog.`content`,'')
 		AND COALESCE(Blog.`imgUrl`,'') = COALESCE(paramimgUrl,Blog.`imgUrl`,'')
 		AND COALESCE(CAST(Blog.`createDate` AS DATE), CAST(NOW() AS DATE)) = COALESCE(CAST(paramcreateDate AS DATE),CAST(Blog.`createDate` AS DATE), CAST(NOW() AS DATE))
 		AND COALESCE(Blog.`blogCategoryId`,0) = COALESCE(paramblogCategoryId,Blog.`blogCategoryId`,0)
