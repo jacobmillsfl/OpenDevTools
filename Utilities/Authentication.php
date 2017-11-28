@@ -44,6 +44,21 @@ class Authentication
     {
         return Permission::checkUserPermission($userId,$permissionName);
     }
+
+    public static function updatePassword($userId,$paramPassword)
+    {
+        // Hash the new password and update the user
+
+        $options = [
+            'cost' => 10,
+            'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM),
+        ];
+
+        $hash = password_hash($paramPassword, PASSWORD_BCRYPT, $options);
+        $user = new User($userId);
+        $user->setPassword($hash);
+        $user->save();
+    }
 }
 
 ?>

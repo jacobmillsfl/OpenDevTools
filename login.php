@@ -69,8 +69,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                 ?>
                 <div class="row">
-                    <div class="col-lg-6 ">
-                        <button type="submit" class="btn btn-primary float-right">Login</button>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3 col-sm-12">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3 col-sm-12">
+                        <a href="forgot-password.php" class ="btn btn-warning btn-lg btn-block">Forgot Password</a>
                     </div>
                 </div>
             </form>

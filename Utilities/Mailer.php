@@ -107,4 +107,49 @@ class Mailer
         }
     }
 
+    public static function sendGenericEmail($email_address,$email_subject,$email_body) {
+        include_once(self::getMailSettings());
+
+        $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+        try {
+            //Server settings
+            $mail->isSMTP();                                // Set mailer to use SMTP
+            $mail->Host = $smtpHost;                        // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                         // Enable SMTP authentication
+            $mail->Username = $smtpUsername;                // SMTP username
+            $mail->Password = $smtpPassword;                // SMTP password
+            $mail->SMTPSecure = 'tls';                      // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 587;                              // TCP port to connect to
+
+            //Recipients
+            $mail->setFrom($smtpUsername,"OpenDevTools User");
+            $mail->addAddress($email_address);
+            $mail->addReplyTo($smtpUsername,"OpenDevTools");
+
+            //Content
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = $email_subject;
+            $mail->Body    = $email_body;
+
+            $altBody = strip_tags($email_body);
+            $mail->AltBody = $altBody;
+
+            // Set SMTP Options
+            $mail->SMTPOptions = array(
+                'ssl' => array(
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                )
+            );
+
+            $mail->send();
+            // Message sent
+            // We may want to log emails in the database...
+        } catch (Exception $e) {
+            // Log error
+            die('Mailer Error: ' . $mail->ErrorInfo);
+        }
+    }
+
 }
