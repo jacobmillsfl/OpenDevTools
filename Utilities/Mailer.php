@@ -78,7 +78,7 @@ class Mailer
             //Recipients
             $mail->setFrom($email_address,"OpenDevTools User");
             $mail->addAddress($smtpUsername);   // This email is to ourselves
-            $mail->addReplyTo($email_address);
+            $mail->addReplyTo($email_address,$email_address);
 
             //Content
 

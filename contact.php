@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
         // Create the email and send the message
         $email_subject = "Website Contact Form:  $name";
-        $email_body = "You have received a new message from your website contact form.<br/><br/>"."Here are the details:<br/><br/>Name: $name<br/><br/>Email: $email_address\<br/><br/>Phone: $phone<br/><br/>Message:<br/>$message";
+        $email_body = "You have received a new message from your website contact form.<br/><br/>"."Here are the details:<br/><br/>Name: $name<br/><br/>Email: $email_address<br/><br/>Phone: $phone<br/><br/>Message:<br/>$message";
 
         Mailer::sendContactEmail($email_address,$email_subject,$email_body);
 
