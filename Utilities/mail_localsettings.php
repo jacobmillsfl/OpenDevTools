@@ -7,4 +7,4 @@
 
 $smtpHost = "smtp.gmail.com";
 $smtpUsername = "opendevtools@gmail.com";
-$smtpPassword = "";
+$smtpPassword = "123Test!!!";
