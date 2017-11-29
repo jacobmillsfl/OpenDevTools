@@ -39,8 +39,11 @@ $userId = SessionManager::getUserId();
                     <img class="card-img-top blog-home-img" src="<?php echo $blogItem->getImgUrl(); ?>" alt="Card image cap">
                     <div class="card-body">
                         <h2 class="card-title"><?php echo $blogItem->getTitle(); ?></h2>
-                        <p class="card-text"><?php echo $blogItem->getContent(); ?></p>
-                        <!--<a href="/blogsample2" class="btn btn-primary">Read More &rarr;</a>-->
+                        <p class="card-text"><?php echo nl2br(substr($blogItem->getContent(), 0, 300)); ?>...</p>
+                        <?php
+                            echo "<a href=\"/blog?id=". $blogItem->getId() ."\" class=\"btn btn-primary\">Read More &rarr;</a>";
+                        ?>
+
                     </div>
                     <div class="card-footer text-muted">
                         Posted on <?php echo $blogItem->getCreateDate(); ?> by

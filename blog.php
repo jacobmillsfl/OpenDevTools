@@ -15,6 +15,19 @@ include_once("Utilities/Authentication.php");
 $userId = SessionManager::getUserId();
 
 
+$blogId = 0;
+
+if (isset($_GET['id'])) {
+    $blogId = htmlspecialchars($_GET["id"]);
+}
+
+$blog = new Blog($blogId);
+
+// Check to ensure a blog has been loaded
+if($blog->getId() < 1)
+{
+    header("location:/bloghome");
+}
 
 
 ?>
@@ -40,7 +53,10 @@ $userId = SessionManager::getUserId();
             <a href="bloghome">Blog Home</a>
         </li>
 
-        <li class="breadcrumb-item active"> Blog</li>
+        <?php
+            echo "<li class=\"breadcrumb-item active\">". $blog->getTitle() . "</li>";
+        ?>
+
     </ol>
     <div class="row">
 
@@ -48,26 +64,28 @@ $userId = SessionManager::getUserId();
         <div class="col-lg-8">
 
             <!-- Preview Image -->
-            <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+            <?php
+            echo "<img class=\"img-fluid rounded\" src=\"". $blog->getImgUrl() ."\" alt=\"blogImage\">";
+            ?>
+
 
             <hr>
 
             <!-- Date/Time -->
-            <p>Posted on January 1, 2017 at 12:00 PM</p>
+            <?php
+            $date = new DateTime($blog->getCreateDate());
+            echo "<p>Posted on " . $date->format('l, F d y h:i:s') . "</p>";
+            ?>
+
 
             <hr>
 
             <!-- Post Content -->
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!</p>
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>
-
+            <p>
+                <?php
+                echo nl2br($blog->getContent());
+                ?>
+            </p>
             <hr>
 
             <!-- Comments Form -->
