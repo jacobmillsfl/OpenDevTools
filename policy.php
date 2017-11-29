@@ -1,3 +1,12 @@
+<?php
+/**
+ * Description: This page displays our site policy
+ */
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,11 +62,6 @@
 <!-- /.container -->
 
 <?php include "footer.php" ?>
-
-<!-- Bootstrap core JavaScript -->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/popper/popper.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
 </body>
 

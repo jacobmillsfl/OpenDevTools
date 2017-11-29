@@ -1,5 +1,10 @@
 <?php
-    // Description: This is a 404 page for invalid requests
+/**
+ * Description: This is a 404 page for invalid requests
+ */
+
+session_start();
+
 ?>
 
 
@@ -26,11 +31,5 @@
 
 <?php include "footer.php" ?>
 
-<!-- Bootstrap core JavaScript -->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/popper/popper.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
 </body>
-
 </html>
