@@ -24,22 +24,8 @@ $userId = SessionManager::getUserId();
     <h1 class="mt-4 mb-3">OpenDevTools
         <small>Blog Home</small>
     </h1>
-    <?php
-    //if logged in, show button to create blog
-    //$status= SessionManager::getUserId();
-    //if($status==0)
-    //{
-    //    echo '<div class = "text - right">';
-    //        echo '<a href="create - blog" class ="btn btn - info btn - lg">Create Blog</a>';
-    //    echo '</div>';
-    // }
-    ?>
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="index">Home</a>
-        </li>
 
-        <li class="breadcrumb-item active"> Blog</li>
     </ol>
     <div class="row">
         <!-- Blog Entries Column -->
@@ -132,8 +118,6 @@ $userId = SessionManager::getUserId();
                     </div>
                 </div>
             </div>
-
-
         </div>
 
     </div>
