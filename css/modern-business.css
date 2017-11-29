@@ -65,3 +65,8 @@ footer {
     max-height: 300px !important;
     max-width: 700px !important;
 }
+
+.blogComment{
+    max-height: 50px;
+    max-width: 50px;
+}

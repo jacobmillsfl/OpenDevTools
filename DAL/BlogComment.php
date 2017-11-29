@@ -239,7 +239,8 @@ class BlogComment {
 			return $arr;
 		}
 		else {
-			die("The query yielded zero results.No rows found.");
+            $arr = array();
+            return $arr;
 		}
 	}
 }

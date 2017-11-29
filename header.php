@@ -1,6 +1,8 @@
 <?php
 
 include_once("Utilities/SessionManager.php");
+include_once("DAL/Blog.php");
+
 ?>
 
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -33,8 +35,19 @@ include_once("Utilities/SessionManager.php");
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                         <a class="dropdown-item" href="bloghome">Blog Home</a>
-                        <a class="dropdown-item" href="blogsample1">Open Source</a>
-                        <a class="dropdown-item" href="blogsample2">Go</a>
+
+                        <?php
+
+                        $blogs = Blog::loadall();
+
+                        foreach ($blogs as $blog) {
+
+                            ?>
+                            <a class="dropdown-item" href="blog?id=<?php echo $blog->getId(); ?>"><?php echo $blog->getTitle();?></a>
+                            <?php
+                        }//end foreach
+
+                        ?>
                     </div>
                 </li>
                 <li class="nav-item">
