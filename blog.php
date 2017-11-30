@@ -31,6 +31,31 @@ if($blog->getId() < 1)
 }
 
 
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    if(isset($_POST["SubmitComment"])) //Check if Submit (comment) button was clicked
+    {
+        $returnVal = true;
+        isset($_POST["Content"]) && $_POST["Content"] != "" ? $comment = $_POST["Content"] : $returnVal = false;    //check that textarea is not empty
+        if($returnVal){
+            $currentDate = date('Y-m-d H:i:s');
+
+            $blogcomment = new BlogComment();
+
+            $blogcomment->setBlogId($blogId);
+            $blogcomment->setComment($comment);
+            $blogcomment->setCreateDate($currentDate);
+            $blogcomment->setUserId($userId);
+
+            $blogcomment->save();
+        }
+        else{
+            $errorMessage = "Enter a comment.";
+        }
+
+    }
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -59,6 +84,7 @@ if($blog->getId() < 1)
         ?>
 
     </ol>
+
     <div class="row">
 
         <!-- Post Content Column -->
@@ -81,6 +107,9 @@ if($blog->getId() < 1)
 
             <hr>
 
+
+
+
             <!-- Post Content -->
             <p>
                 <?php
@@ -91,14 +120,20 @@ if($blog->getId() < 1)
 
             <!-- Comments Form -->
             <?php if($userId > 0): ?>
+                <?php
+                if (isset($errorMessage) && $errorMessage != "")
+                {
+                    echo "<div class=\"alert alert-danger\">" . $errorMessage . "</div>";
+                }
+                ?>
                 <div class="card my-4">
                     <h5 class="card-header">Leave a Comment:</h5>
                     <div class="card-body">
-                        <form>
+                        <form method = "post">
                             <div class="form-group">
-                                <textarea class="form-control" rows="3"></textarea>
+                                <textarea class="form-control" rows="3" name="Content"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary" name="SubmitComment">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -120,7 +155,15 @@ if($blog->getId() < 1)
                 <div class="media mb-4">
                     <img class="d-flex mr-3 rounded-circle blogComment" src="<?php echo $user->getImgUrl(); ?>" alt="">
                     <div class="media-body">
-                        <h5 class="mt-0"><?php echo $user->getUsername(); ?></h5>
+
+                        <h5 class="mt-0"><?php echo $user->getUsername(); ?> </h5>
+                        <small class="float-right">
+                            <?php
+                            $date = new DateTime($comment->getCreateDate());
+                            echo " Posted on " . $date->format('l, F d y h:i:s') ;
+                            ?>
+                        </small>
+                        <br>
                         <?php echo nl2br($comment->getComment());?>
                     </div>
                 </div>
