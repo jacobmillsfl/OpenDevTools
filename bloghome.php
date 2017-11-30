@@ -1,7 +1,7 @@
 <?php
 /* Blog home page */
 session_start();
-include_once("DAL/Blog.php");
+include_once("DAL/Bloghome.php");
 include_once("DAL/BlogCategory.php");
 include_once("DAL/User.php");
 include_once("DAL/Permission.php");
@@ -9,8 +9,22 @@ include_once("Utilities/Authentication.php");
 
 $userId = SessionManager::getUserId();
 
+$blogContent = null;
+$blogCategoryId = null;
+$pageNum = 0;
 
 
+if (isset($_GET['content'])) {
+    $blogContent = htmlspecialchars($_GET["content"]);
+}
+
+if (isset($_GET['blogCategoryId'])) {
+    $blogCategoryId = htmlspecialchars($_GET["blogCategoryId"]);
+}
+
+if (isset($_GET['page'])) {
+    $pageNum = htmlspecialchars($_GET["page"]);
+}
 
 ?>
 <!DOCTYPE html>
@@ -32,7 +46,7 @@ $userId = SessionManager::getUserId();
         <div class="col-md-8">
             <!-- uses the loadall() method from Blog.php to dynamically load blog images, titles, contents, dates, and user IDs -->
             <?php
-            $blogList=Blog::loadall();
+            $blogList=Bloghome::loadBlogHome($blogContent,$blogCategoryId,$pageNum);
             foreach ($blogList as $blogItem){
                 ?>
                 <div class="card mb-4">
@@ -41,7 +55,7 @@ $userId = SessionManager::getUserId();
                         <h2 class="card-title"><?php echo $blogItem->getTitle(); ?></h2>
                         <p class="card-text"><?php echo nl2br(substr($blogItem->getContent(), 0, 300)); ?>...</p>
                         <?php
-                            echo "<a href=\"/blog?id=". $blogItem->getId() ."\" class=\"btn btn-primary\">Read More &rarr;</a>";
+                            echo "<a href=\"/blog?id=". $blogItem->getBlogId() ."\" class=\"btn btn-primary\">Read More &rarr;</a>";
                         ?>
 
                     </div>
@@ -49,9 +63,7 @@ $userId = SessionManager::getUserId();
                         Posted on <?php echo $blogItem->getCreateDate(); ?> by
                         <a href="#">
                             <?php
-                            $user = new User();
-                            $user->load($blogItem->getUserId());
-                            echo $user->getUsername();
+                            echo $blogItem->getUsername()
                             ?>
                         </a>
                     </div>
@@ -91,17 +103,20 @@ $userId = SessionManager::getUserId();
                 }
             ?>
             <!-- Search Widget -->
-            <div class="card mb-4">
-                <h5 class="card-header">Search</h5>
-                <div class="card-body">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn">
-                  <button class="btn btn-secondary" type="button">Go!</button>
-                </span>
+            <form action="bloghome" method="GET">
+                <div class="card mb-4">
+                    <h5 class="card-header">Search</h5>
+                    <div class="card-body">
+                        <div class="input-group">
+                            <input type="text" name="content" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                              <button class="btn btn-secondary" type="submit">Go!</button>
+                            </span>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
+
 
             <!-- Categories Widget -->
             <div class="card my-4">
@@ -113,7 +128,7 @@ $userId = SessionManager::getUserId();
                         foreach ($BlogCategoryList as $blogcategory){
                             ?>
                             <div class="col-lg-6">
-                                <a href="#"><?php echo $blogcategory->getName() ?></a>
+                                <a href="bloghome?blogCategoryId=<?php echo $blogcategory->getId(); ?>"><?php echo $blogcategory->getName(); ?></a>
                             </div>
                             <?php
                         }
@@ -125,7 +140,6 @@ $userId = SessionManager::getUserId();
 
     </div>
 
-</div><!-- /.row -->
 </div><!-- /container -->
 
 <!-- Footer -->

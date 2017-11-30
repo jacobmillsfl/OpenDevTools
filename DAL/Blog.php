@@ -292,4 +292,5 @@ class Blog {
 			die("The query yielded zero results.No rows found.");
 		}
 	}
+
 }

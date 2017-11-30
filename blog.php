@@ -29,6 +29,12 @@ if($blog->getId() < 1)
 {
     header("location:/bloghome");
 }
+else
+{
+    // Increment blog views
+    $blog->setViews($blog->getViews() + 1);
+    $blog->save();
+}
 
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
