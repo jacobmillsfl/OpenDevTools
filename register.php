@@ -23,17 +23,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     // Step 4) Redirect to /account.php for the newly created user
     $username = $_POST["username"];
     $password = $_POST["password"];
+    $passwordconf = $_POST["passwordconf"];
     $email = $_POST["email"];
     $location = $_POST["location"];
     $imgUrl = $_POST["imgUrl"];
     $githubUrl = $_POST["githubUrl"];
     $bio = $_POST["bio"];
 
+
+
     // 1) Ensure username is not already taken
     $user = User::lookup($username);
     if ($user != null) {
         // This username is already taken
         $errorMessage = "The provided username is already in use. Please try another username.";
+    }
+    elseif($password != $passwordconf) {
+        $errorMessage = "The passwords you entered do not match. Please try again.";
     }
     else {
         $currentDate = date('Y-m-d H:i:s');
@@ -107,12 +113,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <p class="help-block"></p>
                                 </div>
                             </div>
-                            <div class="control-group form-group col-lg-6 ">
+                            <div class="control-group form-group col-lg-3 ">
                                 <div class="controls">
                                     <strong>Password:</strong><span style="color:red;">*</span>
                                     <br/><small>Please enter a strong password</small>
                                     <input type="password" class="form-control" id="password" name="password" required
                                            data-validation-required-message="Please enter a password." maxlength="255">
+                                </div>
+                            </div>
+                            <div class="control-group form-group col-lg-3 ">
+                                <div class="controls">
+                                    <strong>Password Confirmation:</strong><span style="color:red;">*</span>
+                                    <br/><small>Please retype your password</small>
+                                    <input type="password" class="form-control" id="passwordconf" name="passwordconf" required
+                                           data-validation-required-message="Please Re-enter password." maxlength="255">
                                 </div>
                             </div>
                         </div>
