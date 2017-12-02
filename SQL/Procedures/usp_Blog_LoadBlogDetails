@@ -1,0 +1,26 @@
+DELIMITER //
+CREATE PROCEDURE `opendevtools`.`usp_Blog_LoadBlogDetails`
+(
+	IN paramid INT
+)
+BEGIN
+	SELECT
+		`Blog`.`id` AS `id`,
+		`Blog`.`title` AS `title`,
+		`Blog`.`imgUrl` AS `imgUrl`,
+		`Blog`.`createDate` AS `createDate`,
+		`Blog`.`content` AS `content`,
+		`CommentUser`.`username` AS `commentUsername`,
+		`CommentUser`.`imgUrl` AS `commentImgUrl`,
+		`BlogComment`.`createDate` AS `commentDate`,
+		`BlogComment`.`comment` AS `commentContent`,
+    `CreateUser`.`username` AS `createdByUsername`
+	FROM `Blog`
+	INNER JOIN `User` AS `CreateUser` ON `Blog`.`userId` = `CreateUser`.`id`
+	INNER JOIN `BlogComment` ON `BlogComment`.`blogId` = `Blog`.`id`
+	INNER JOIN `User` AS `CommentUser` ON `BlogComment`.`userId` = `CommentUser`.`id`
+	WHERE
+		`Blog`.`id` = paramid
+	ORDER BY `BlogComment`.`createDate`;
+END //
+DELIMITER ;

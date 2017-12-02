@@ -8,7 +8,7 @@ Description:	Creates the DAL class for  Blog table and respective stored procedu
 
 
 
-class Blog {
+class Blog implements Serializable {
 
 	// This is for local purposes only! In hosted environments the db_settings.php file should be outside of the webroot, such as: include("/outside-webroot/db_settings.php");
 	protected static function getDbSettings() { return "DAL/db_localsettings.php"; }
@@ -131,6 +131,13 @@ class Blog {
 	/******************************************************************/
 	// Public Methods
 	/******************************************************************/
+
+    public function serialize() {
+        return serialize($this);
+    }
+    public function unserialize($data) {
+        return unserialize($data);
+    }
 
 
 	public function load($paramId) {

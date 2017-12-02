@@ -1,7 +1,10 @@
 <?php
 
 include_once("Utilities/SessionManager.php");
-include_once("DAL/Blog.php");
+
+//include_once("DAL/Blog.php");
+
+
 
 ?>
 
@@ -39,6 +42,8 @@ include_once("DAL/Blog.php");
                         <?php
 
                         $blogs = Blog::loadall();
+
+                        //$blogs = SessionManager::getBlogNavItems();
 
                         foreach ($blogs as $blog) {
 
