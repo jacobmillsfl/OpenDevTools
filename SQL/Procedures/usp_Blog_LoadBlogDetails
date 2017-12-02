@@ -1,3 +1,5 @@
+use opendevtools;
+
 DELIMITER //
 CREATE PROCEDURE `opendevtools`.`usp_Blog_LoadBlogDetails`
 (
@@ -17,8 +19,8 @@ BEGIN
     `CreateUser`.`username` AS `createdByUsername`
 	FROM `Blog`
 	INNER JOIN `User` AS `CreateUser` ON `Blog`.`userId` = `CreateUser`.`id`
-	INNER JOIN `BlogComment` ON `BlogComment`.`blogId` = `Blog`.`id`
-	INNER JOIN `User` AS `CommentUser` ON `BlogComment`.`userId` = `CommentUser`.`id`
+	LEFT JOIN `BlogComment` ON `BlogComment`.`blogId` = `Blog`.`id`
+	LEFT JOIN `User` AS `CommentUser` ON `BlogComment`.`userId` = `CommentUser`.`id`
 	WHERE
 		`Blog`.`id` = paramid
 	ORDER BY `BlogComment`.`createDate`;

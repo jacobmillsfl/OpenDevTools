@@ -41,14 +41,14 @@ include_once("Utilities/SessionManager.php");
 
                         <?php
 
-                        $blogs = Blog::loadall();
+                        $blognavigationlist = Blog::loadall();
 
                         //$blogs = SessionManager::getBlogNavItems();
 
-                        foreach ($blogs as $blog) {
+                        foreach ($blognavigationlist as $blogNavItem) {
 
                             ?>
-                            <a class="dropdown-item" href="blog?id=<?php echo $blog->getId(); ?>"><?php echo $blog->getTitle();?></a>
+                            <a class="dropdown-item" href="blog?id=<?php echo $blogNavItem->getId(); ?>"><?php echo $blogNavItem->getTitle();?></a>
                             <?php
                         }//end foreach
 
