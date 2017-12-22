@@ -2,8 +2,8 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Open-Source development tools and free services for developers and software engineering teams of all sizes">
+    <meta name="author" content="OpenDevTools">
 
     <title>OpenDevTools.Org</title>
 

@@ -66,9 +66,10 @@ session_start();
                 <div class="card-body">
                     <p class="card-text">This product is still under active development, but feel free to try the current stable release. Also, if you're interested in contributing to the DALGen project, check out our <a
                             href="https://www.github.com/h0r53/DALGen">GitHub</a>.</p>
+                    <p class="card-text"><strong>Notice: </strong>A fully web version of DALGen is under active development and will be available in early 2018!</p>
                 </div>
                 <div class="card-footer">
-                    <a href="https://www.opendevtools.org/files/DALGen_Beta.zip" class="btn btn-primary">Download</a>
+                    <a href="https://www.opendevtools.org/files/DALGen_Beta.exe" class="btn btn-primary">Download</a>
                 </div>
             </div>
         </div>
@@ -84,7 +85,8 @@ session_start();
             <div class="card h-100">
                 <h4 class="card-header">Object-Relational Mapping</h4>
                 <div class="card-body">
-                    <p class="card-text">Coming Soon</p>
+                    <p class="card-text">DALGen is a tool that creates an Object-Relational Mapping based on predefined stored procedures at the DBMS level and expandable object classes at the Data Access Layer level. The idea is to expedite the development process and database integration by producing expandable code libraries that handle database access for you in a secure and efficient manner.</p>
+                    <p class="card-text">For more information about Object-Relation Mapping, see <a href="https://en.wikipedia.org/wiki/Object-relational_mapping">Wikipedia</a>.</p>
                 </div>
             </div>
         </div>
