@@ -51,3 +51,51 @@ VALUES (3,3); -- Moderator, CommentBlog
 
 INSERT INTO roletopermission(userroleid,permissionid)
 VALUES (4,3); -- Admin, CommentBlog
+
+
+
+INSERT INTO permission (name,description,createdate)
+VALUES ("ManageForum","Roles with this permission have the ability to create and edit forums",NOW());
+
+INSERT INTO permission (name,description,createdate)
+VALUES ("CommentForum","Roles with this permission have the ability to comment on forums",NOW());
+
+INSERT INTO permission (name,description,createdate)
+VALUES ("EditForumComment","Roles with this permission have the ability to edit forum comments",NOW());
+
+-- Associate roles to permissions
+INSERT INTO roletopermission(userroleid,permissionid)
+VALUES (1,4); -- Blogger, ManageForum
+
+INSERT INTO roletopermission(userroleid,permissionid)
+VALUES (2,4); -- Blogger, ManageForum
+
+INSERT INTO roletopermission(userroleid,permissionid)
+VALUES (3,4); -- Moderator, ManageForum
+
+INSERT INTO roletopermission(userroleid,permissionid)
+VALUES (4,4); -- Admin, ManageForum
+
+INSERT INTO roletopermission(userroleid,permissionid)
+VALUES (1,5); -- General, CommentForum
+
+INSERT INTO roletopermission(userroleid,permissionid)
+VALUES (2,5); -- Blogger, CommentForum
+
+INSERT INTO roletopermission(userroleid,permissionid)
+VALUES (3,5); -- Moderator, CommentForum
+
+INSERT INTO roletopermission(userroleid,permissionid)
+VALUES (4,5); -- Admin, CommentForum
+
+INSERT INTO roletopermission(userroleid,permissionid)
+VALUES (1,6); -- Moderator, EditForumComment
+
+INSERT INTO roletopermission(userroleid,permissionid)
+VALUES (2,6); -- Admin, EditForumComment
+
+INSERT INTO roletopermission(userroleid,permissionid)
+VALUES (3,6); -- Moderator, EditForumComment
+
+INSERT INTO roletopermission(userroleid,permissionid)
+VALUES (4,6); -- Admin, EditForumComment

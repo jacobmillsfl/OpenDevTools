@@ -1,25 +1,25 @@
 <?php
-/* Blog home page */
+/* Forum home page */
 session_start();
-include_once("DAL/Bloghome.php");
-include_once("DAL/BlogCategory.php");
+include_once("DAL/forumhome.php");
+include_once("DAL/ForumCategory.php");
 include_once("DAL/User.php");
 include_once("DAL/Permission.php");
 include_once("Utilities/Authentication.php");
 
 $userId = SessionManager::getUserId();
 
-$blogContent = null;
-$blogCategoryId = null;
+$forumContent = null;
+$forumCategoryId = null;
 $pageNum = 0;
 
 
 if (isset($_GET['content'])) {
-    $blogContent = htmlspecialchars($_GET["content"]);
+    $forumContent = htmlspecialchars($_GET["content"]);
 }
 
-if (isset($_GET['blogCategoryId'])) {
-    $blogCategoryId = htmlspecialchars($_GET["blogCategoryId"]);
+if (isset($_GET['forumCategoryId'])) {
+    $forumCategoryId = htmlspecialchars($_GET["forumCategoryId"]);
 }
 
 if (isset($_GET['page'])) {
@@ -36,33 +36,32 @@ if (isset($_GET['page'])) {
 <div class="container">
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-4 mb-3">OpenDevTools
-        <small>Blog Home</small>
+        <small>Forum Home</small>
     </h1>
     <ol class="breadcrumb">
 
     </ol>
     <div class="row">
-        <!-- Blog Entries Column -->
+        <!-- Forum Entries Column -->
         <div class="col-md-8">
-            <!-- uses the loadall() method from Blog.php to dynamically load blog images, titles, contents, dates, and user IDs -->
+            <!-- uses the loadall() method from Forum.php to dynamically load forum images, titles, contents, dates, and user IDs -->
             <?php
-            $blogList=Bloghome::loadBlogHome($blogContent,$blogCategoryId,$pageNum);
-            foreach ($blogList as $blogItem){
+            $forumList=Forumhome::loadForumHome($forumContent,$forumCategoryId,$pageNum);
+            foreach ($forumList as $forumItem){
                 ?>
                 <div class="card mb-4">
-                    <img class="card-img-top blog-home-img" src="<?php echo $blogItem->getImgUrl(); ?>" alt="Card image cap">
                     <div class="card-body">
-                        <h2 class="card-title"><?php echo $blogItem->getTitle(); ?></h2>
-                        <p class="card-text"><?php echo nl2br(substr($blogItem->getContent(), 0, 300)); ?>...</p>
+                        <h2 class="card-title"><?php echo $forumItem->getTitle(); ?></h2>
+                        <p class="card-text"><?php echo nl2br(substr($forumItem->getContent(), 0, 300)); ?>...</p>
                         <?php
-                            echo "<a href=\"/blog?id=". $blogItem->getBlogId() ."\" class=\"btn btn-primary\">Read More &rarr;</a>";
+                        echo "<a href=\"/forum?id=". $forumItem->getForumId() ."\" class=\"btn btn-primary\">Read More &rarr;</a>";
                         ?>
                     </div>
                     <div class="card-footer text-muted">
-                        Posted on <?php echo $blogItem->getCreateDate(); ?> by
+                        Posted on <?php echo $forumItem->getCreateDate(); ?> by
                         <a href="#">
                             <?php
-                            echo $blogItem->getUsername()
+                            echo $forumItem->getUsername()
                             ?>
                         </a>
                     </div>
@@ -93,16 +92,16 @@ if (isset($_GET['page'])) {
         <!-- Sidebar Widgets Column -->
         <div class="col-md-4">
             <?php
-                if (Authentication::hasPermission($userId,Permission::ManageBlog))
-                {
-                    echo "<div class =\"text-center\">";
-                    echo "<a href=\"create-blog\" class =\"btn btn-primary btn-lg btn-block\"><i class=\"\"></i>Create Blog</a>";
-                    echo "</div>";
-                    echo "<br>";
-                }
+            if (Authentication::hasPermission($userId,Permission::ManageForum))
+            {
+                echo "<div class =\"text-center\">";
+                echo "<a href=\"create-forum\" class =\"btn btn-primary btn-lg btn-block\"><i class=\"\"></i>Create Forum</a>";
+                echo "</div>";
+                echo "<br>";
+            }
             ?>
             <!-- Search Widget -->
-            <form action="bloghome" method="GET">
+            <form action="forumhome" method="GET">
                 <div class="card mb-4">
                     <h5 class="card-header">Search</h5>
                     <div class="card-body">
@@ -123,11 +122,11 @@ if (isset($_GET['page'])) {
                 <div class="card-body">
                     <div class="row">
                         <?php
-                        $BlogCategoryList = BlogCategory::loadall();
-                        foreach ($BlogCategoryList as $blogcategory){
+                        $ForumCategoryList = ForumCategory::loadall();
+                        foreach ($ForumCategoryList as $forumcategory){
                             ?>
                             <div class="col-lg-6">
-                                <a href="bloghome?blogCategoryId=<?php echo $blogcategory->getId(); ?>"><?php echo $blogcategory->getName(); ?></a>
+                                <a href="forumhome?forumCategoryId=<?php echo $forumcategory->getId(); ?>"><?php echo $forumcategory->getName(); ?></a>
                             </div>
                             <?php
                         }

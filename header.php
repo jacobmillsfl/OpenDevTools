@@ -2,7 +2,7 @@
 
 include_once("Utilities/SessionManager.php");
 include_once("DAL/Blog.php");
-
+include_once("DAL/Forum.php");
 ?>
 
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -26,6 +26,28 @@ include_once("DAL/Blog.php");
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
                         <a class="dropdown-item" href="dalgen">DALGen</a>
                         <a class="dropdown-item" href="tasktracker">TaskTracker</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownForum" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Forum
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownForum">
+                        <a class="dropdown-item" href="forumhome">Forum Home</a>
+
+                        <?php
+
+                        $fourmList = Forum::loadall();
+
+                        foreach ($fourmList as $f) {
+
+                            ?>
+                            <a class="dropdown-item" href="forum?id=<?php echo $f->getId(); ?>"><?php echo $f->getTitle();?></a>
+                            <?php
+                        }//end foreach
+
+                        ?>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
