@@ -9,6 +9,7 @@ session_start();
 include_once("DAL/Blog.php");
 include_once("DAL/BlogCategory.php");
 include_once("DAL/BlogComment.php");
+include_once("DAL/BlogDetails.php");
 include_once("DAL/User.php");
 include_once("DAL/Permission.php");
 include_once("Utilities/Authentication.php");
@@ -23,6 +24,8 @@ if (isset($_GET['id'])) {
 }
 
 $blog = new Blog($blogId);
+$blogDetail = BlogDetails::loadBlogDetails($blogId);
+
 
 // Check to ensure a blog has been loaded
 if($blog->getId() < 1)
@@ -53,6 +56,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $blogcomment->setUserId($userId);
 
             $blogcomment->save();
+            header("location:/blog?id=" . $blogId);
         }
         else{
             $errorMessage = "Enter a comment.";
@@ -150,27 +154,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php
             // Load all comments for this blog id from the database
 
-            $comments = BlogComment::search(null,$blogId,null,null,null);
+            //$comments = BlogComment::search(null,$blogId,null,null,null);
 
 
-            foreach ($comments as $comment) {
-                $commentUserId = $comment->getUserId();
-                $user = new User($commentUserId);
+            foreach ($blogDetail as $comment) {
+                //$commentUserId = $comment->getUserId();
+                //$user = new User($commentUserId);
 
                 ?>
                 <div class="media mb-4">
-                    <img class="d-flex mr-3 rounded-circle blogComment" src="<?php echo $user->getImgUrl(); ?>" alt="">
+                    <img class="d-flex mr-3 rounded-circle blogComment" src="<?php echo $comment->getCommentImgUrl(); ?>" alt="">
                     <div class="media-body">
 
-                        <h5 class="mt-0"><?php echo $user->getUsername(); ?> </h5>
+                        <h5 class="mt-0"><?php echo $comment->getCommentUsername(); ?> </h5>
                         <small class="float-right">
                             <?php
-                            $date = new DateTime($comment->getCreateDate());
+                            $date = new DateTime($comment->getCommentDate());
                             echo " Posted on " . $date->format('l, F d y h:i:s') ;
                             ?>
                         </small>
                         <br>
-                        <?php echo nl2br($comment->getComment());?>
+                        <?php echo nl2br($comment->getCommentContent());?>
                     </div>
                 </div>
             <?php
@@ -194,17 +198,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             ?>
             <!-- Search Widget -->
-            <div class="card mb-4">
-                <h5 class="card-header">Search</h5>
-                <div class="card-body">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn">
-                  <button class="btn btn-secondary" type="button">Go!</button>
-                </span>
+            <form action="bloghome" method="GET">
+                <div class="card mb-4">
+                    <h5 class="card-header">Search</h5>
+                    <div class="card-body">
+                        <div class="input-group">
+                            <input type="text" name="content" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                              <button class="btn btn-secondary" type="submit">Go!</button>
+                            </span>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
+
 
             <!-- Categories Widget -->
             <div class="card my-4">
@@ -216,7 +223,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         foreach ($BlogCategoryList as $blogcategory){
                             ?>
                             <div class="col-lg-6">
-                                <a href="#"><?php echo $blogcategory->getName() ?></a>
+                                <a href="bloghome?blogCategoryId=<?php echo $blogcategory->getId(); ?>"><?php echo $blogcategory->getName(); ?></a>
                             </div>
                             <?php
                         }

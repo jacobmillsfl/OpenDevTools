@@ -1,8 +1,12 @@
 <?php
 
 include_once("Utilities/SessionManager.php");
-include_once("DAL/Blog.php");
+//include_once("DAL/Blog.php");
 include_once("DAL/Forum.php");
+
+
+
+
 ?>
 
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -60,12 +64,14 @@ include_once("DAL/Forum.php");
 
                         <?php
 
-                        $blogs = Blog::loadall();
+                        $blognavigationlist = Blog::loadall();
 
-                        foreach ($blogs as $blog) {
+                        //$blogs = SessionManager::getBlogNavItems();
+
+                        foreach ($blognavigationlist as $blogNavItem) {
 
                             ?>
-                            <a class="dropdown-item" href="blog?id=<?php echo $blog->getId(); ?>"><?php echo $blog->getTitle();?></a>
+                            <a class="dropdown-item" href="blog?id=<?php echo $blogNavItem->getId(); ?>"><?php echo $blogNavItem->getTitle();?></a>
                             <?php
                         }//end foreach
 
