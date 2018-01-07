@@ -23,8 +23,8 @@
 
     <title>DALGen - By OpenDevTools.Org</title>
 
-    <link href="https://www.opendevtools.org/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://www.opendevtools.org/css/modern-business.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/modern-business.css" rel="stylesheet">
 
     <style>
         .close-attribute{
@@ -36,9 +36,9 @@
     </style>
 
     <!-- Javascript -->
-    <script src="https://www.opendevtools.org/vendor/jquery/jquery.min.js"></script>
-    <script src="https://www.opendevtools.org/vendor/popper/popper.min.js"></script>
-    <script src="https://www.opendevtools.org/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/popper/popper.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
 
 
@@ -51,6 +51,8 @@
     // Document Ready
     // ***************************************
 
+
+
     $(function() {
         // Page load
 
@@ -59,49 +61,7 @@
         // Reset page
         resetGrid();
 
-        // DBType changed listener
-        $('.dbtype').change(function(){
-            var dbsizeID = this.value;
 
-            if (enableDBSize(getDataTypeString(dbsizeID))) {
-                $(this).parent().parent().find('.dbsize').prop("disabled", false);
-            }
-            else{
-                $(this).parent().parent().find('.dbsize').prop("disabled", true);
-            }
-        });
-
-        // DBTypePK changed listener
-        $('.DBTypePK').change(function(){
-
-            var AutoIncDiv = $(this).parent().parent().parent().find('.DBTypeAutoIncrement');
-
-            if ($(this).prop('checked')) {
-                AutoIncDiv.prop("disabled", false);
-            }
-            else {
-                AutoIncDiv.prop('checked', false);
-                AutoIncDiv.prop("disabled", true);
-            }
-        });
-
-        // DBTypePK changed listener
-        $('.DBTypeFK').change(function(){
-
-            var DBEntity = $(this).parent().parent().parent().parent().parent().find('.DBReferencingEntity');
-            var DBAttribute = $(this).parent().parent().parent().parent().parent().find('.DBReferencingAttribute');
-
-            if ($(this).prop('checked')) {
-                DBEntity.prop("disabled", false);
-                DBAttribute.prop("disabled", false);
-            }
-            else {
-                DBEntity.val("");
-                DBAttribute.val("");
-                DBEntity.prop('disabled', true);
-                DBAttribute.prop("disabled", true);
-            }
-        });
 
         // DBTypePK changed listener
         $('.radioDBType').change(function(){
@@ -111,6 +71,52 @@
             addDBAttribute();
         });
 
+    });
+
+    // ******************************
+    // Listeners
+    // ******************************
+
+    $(document).on('change', ".DBtype", function() {
+        var dbsizeID = this.value;
+
+        if (enableDBSize(getDataTypeString(dbsizeID))) {
+            $(this).parent().parent().find('.DBsize').prop("disabled", false);
+        }
+        else{
+            $(this).parent().parent().find('.DBsize').val(""); // reset
+            $(this).parent().parent().find('.DBsize').prop("disabled", true);
+        }
+    });
+
+   $(document).on('click', ".DBTypePK", function() {
+        var AutoIncDiv = $(this).parent().parent().parent().find('.DBTypeAutoIncrement');
+
+        if ($(this).prop('checked')) {
+            AutoIncDiv.prop("disabled", false);
+        }
+        else {
+            AutoIncDiv.prop('checked', false);
+            AutoIncDiv.prop("disabled", true);
+        }
+    });
+
+    // DBTypePK changed listener
+    $(document).on('click', ".DBTypeFK", function() {
+
+        var DBEntity = $(this).parent().parent().parent().parent().parent().find('.DBReferencingEntity');
+        var DBAttribute = $(this).parent().parent().parent().parent().parent().find('.DBReferencingAttribute');
+
+        if ($(this).prop('checked')) {
+            DBEntity.prop("disabled", false);
+            DBAttribute.prop("disabled", false);
+        }
+        else {
+            DBEntity.val("");
+            DBAttribute.val("");
+            DBEntity.prop('disabled', true);
+            DBAttribute.prop("disabled", true);
+        }
     });
 
     // ***************************************
@@ -132,6 +138,16 @@
         addDBAttribute();
 
         // Clear generated content
+        $('#TextareaMySQL').empty();
+        $('#TextareaTSQL').empty();
+        $('#TextareaOracle').empty();
+        $('#TextareaC').empty();
+        $('#TextareaCPP').empty();
+        $('#TextareaCS').empty();
+        $('#TextareaJava').empty();
+        $('#TextareaPython').empty();
+        $('#TextareaPHP').empty();
+
 
         // Hide Content Div
         $('#DivOutputC').hide();
@@ -151,59 +167,61 @@
     function addDBAttribute(){
         // Create controls to define an entity property
 
+        // Build appropriate SQL DBType Dropdown list (TODO: Add Oracle)
         if ($('#RadioMySQL').prop('checked') === true)
             var sqlDropdown = getMySQLDropdown();
         else
             var sqlDropdown = getTSQLDropdown();
 
         // DivProperties
-        $('#DivProperties').append("<div class=\"DALAttribute col-lg-12 mb-4 \">\n" +
-            "<div class=\"row\"><a onclick=\"removeDBAttribute(this);\" class=\"close close-attribute\">&times;</a></div>\n" +
-            "<div class=\"row\">\n" +
-            "\t<div class=\"col-sm-9\">\n" +
-            "\t\t<div class=\"row mb-2\">\n" +
-            "\t\t\t<label for=\"attributeName\" class=\"col-sm-4\">Attribute Name:</label>\n" +
-            "\t\t\t<div class=\"col-sm-8\">\n" +
-            "\t\t\t\t<input type=\"text\" class=\"form-control\" name=\"attributeName\">\n" +
-            "\t\t\t</div>\n" +
-            "\t\t</div>\n" +
-            "\t\t<div class=\"row mb-2\">\n" +
-            "\t\t\t<label for=\"attributeType\" class=\"col-sm-4\">Attribute Type:</label>\n" +
-            "\t\t\t<div class=\"col-sm-4\">\n" +
-            "\t\t\t\t<select class=\"form-control dbtype\" name=\"attributeType\">\n" +
-            sqlDropdown +
-            "\t\t\t\t</select>\n" +
-            "\t\t\t</div>\n" +
-            "\t\t\t<label for=\"attributeSize\" class=\"col-sm-2\">Attribute Size:</label>\n" +
-            "\t\t\t<div class=\"col-sm-2\">\n" +
-            "\t\t\t\t<input type=\"text\" class=\"form-control dbsize\" name=\"attributeSize\" disabled=\"disabled\">\n" +
-            "\t\t\t</div>\n" +
-            "\t\t</div>\n" +
-            "\t</div>\n" +
-            "\t<div class=\"col-sm-3\">\n" +
-            "\t\t<div class=\"checkbox\">\n" +
-            "\t\t\t<label><input type=\"checkbox\" value=\"\" class=\"DBTypePK\"> Is Primary Key</label>\n" +
-            "\t\t</div>\n" +
-            "\t\t<div class=\"checkbox\">\n" +
-            "\t\t\t<label><input type=\"checkbox\" value=\"\" disabled=\"disabled\" class=\"DBTypeAutoIncrement\"> Auto Increment</label>\n" +
-            "\t\t</div>\n" +
-            "\t\t<div class=\"checkbox\">\n" +
-            "\t\t\t<label><input type=\"checkbox\" value=\"\" class=\"DBTypeFK\"> Is Foreign Key</label>\n" +
-            "\t\t</div>\n" +
-            "\t</div>\n" +
-            "</div>\n" +
-            "<div class=\"row\">\n" +
-            "\t<label for=\"referencingEntity\" class=\"col-sm-3\">Referencing Entity:</label>\n" +
-            "\t<div class=\"col-sm-3\">\n" +
-            "\t\t<input type=\"text\" class=\"form-control DBReferencingEntity\" name=\"referencingEntity\" disabled=\"disabled\">\n" +
-            "\t</div>\n" +
-            "\t<label for=\"referencingAttribute\" class=\"col-sm-3\">Referencing Attribute:</label>\n" +
-            "\t<div class=\"col-sm-3\">\n" +
-            "\t\t<input type=\"text\" class=\"form-control DBReferencingAttribute\" name=\"referencingAttribute\" disabled=\"disabled\">\n" +
-            "\t</div>\n" +
-            "</div>\n" +
-            "<div class=\"col-lg-12\"><hr></div>\n" +
-            "</div>\n");
+        $('#DivProperties').append("<div class=\"DALAttribute col-lg-12 mb-4\">\n" +
+            "            <div class=\"row\"><a onclick=\"removeDBAttribute(this);\" class=\"close close-attribute\">&times;</a></div>\n" +
+            "\n" +
+            "            <div class=\"row\">\n" +
+            "                <div class=\"col-sm-9\">\n" +
+            "                    <div class=\"row mb-2\">\n" +
+            "                        <label for=\"attributeName\" class=\"col-sm-4\">Attribute Name:</label>\n" +
+            "                        <div class=\"col-sm-8\">\n" +
+            "                            <input type=\"text\" class=\"form-control DBattributeName\" name=\"attributeName\">\n" +
+            "                        </div>\n" +
+            "                    </div>\n" +
+            "                    <div class=\"row mb-2\">\n" +
+            "                        <label for=\"attributeType\" class=\"col-sm-4\">Attribute Type:</label>\n" +
+            "                        <div class=\"col-sm-4\">\n" +
+            "                            <select class=\"form-control DBtype\" name=\"attributeType\">\n" + sqlDropdown +
+            "                            </select>\n" +
+            "\n" +
+            "                        </div>\n" +
+            "                        <label for=\"attributeSize\" class=\"col-sm-2\">Attribute Size:</label>\n" +
+            "                        <div class=\"col-sm-2\">\n" +
+            "                            <input type=\"text\" class=\"form-control DBsize\" name=\"attributeSize\" disabled=\"disabled\">\n" +
+            "                        </div>\n" +
+            "                    </div>\n" +
+            "                </div>\n" +
+            "                <div class=\"col-sm-3\">\n" +
+            "                    <div class=\"checkbox\">\n" +
+            "                        <label><input type=\"checkbox\" value=\"\" class=\"DBTypePK\"> Is Primary Key</label>\n" +
+            "                    </div>\n" +
+            "                    <div class=\"checkbox\">\n" +
+            "                        <label><input type=\"checkbox\" value=\"\" disabled=\"disabled\" class=\"DBTypeAutoIncrement\"> Auto Increment</label>\n" +
+            "                    </div>\n" +
+            "                    <div class=\"checkbox\">\n" +
+            "                        <label><input type=\"checkbox\" value=\"\" class=\"DBTypeFK\"> Is Foreign Key</label>\n" +
+            "                    </div>\n" +
+            "                </div>\n" +
+            "            </div>\n" +
+            "            <div class=\"row\">\n" +
+            "                <label for=\"referencingEntity\" class=\"col-sm-3\">Referencing Entity:</label>\n" +
+            "                <div class=\"col-sm-3\">\n" +
+            "                    <input type=\"text\" class=\"form-control DBReferencingEntity\" name=\"referencingEntity\" disabled=\"disabled\">\n" +
+            "                </div>\n" +
+            "                <label for=\"referencingAttribute\" class=\"col-sm-3\">Referencing Attribute:</label>\n" +
+            "                <div class=\"col-sm-3\">\n" +
+            "                    <input type=\"text\" class=\"form-control DBReferencingAttribute\" name=\"referencingAttribute\" disabled=\"disabled\">\n" +
+            "                </div>\n" +
+            "            </div>\n" +
+            "            <div class=\"col-lg-12\"><hr></div>\n" +
+            "        </div>");
 
 
     }
@@ -228,6 +246,114 @@
 
     // This function generates content for selected languages
     function generateContent(){
+
+
+        // Validate form
+        // Requirements:
+        // 1) DatabaseName must exist
+        // 2) EntityName must exist
+        // 3) Attributes must be formatted correctly (DB Type selection
+
+
+        // Build DALEntity objects
+        var dbName = $('#DatabaseName').val();
+        var entityName = $('#ERName').val();
+        var schemaName = $('#SchemaName').val();
+        var namespaceName = $('#Namespace').val();
+
+        // If schemaName is not provided, use "usp" (User Stored Procedure)
+        if (schemaName.toString() === "") {
+            schemaName = "usp";
+        }
+
+        // Build DALAttribute objects
+        var attributeCount = 0;
+        var attributeCountPK = 0;
+        var attributeCountFK = 0;
+        var dalAttributes = [];
+        var $this, input, text, obj;
+        $('.DALAttribute').each(function() {
+            var attribute = new Object();
+            $this = $(this);
+
+            // Name
+            $input = $this.find(".DBattributeName");
+            text = $input.val();
+            attribute.name = text;
+
+            // Type
+            $input = $this.find(".DBtype option:selected");
+            text = $input.text();
+            attribute.type = text;
+
+            // Size
+            $input = $this.find(".DBsize");
+            text = $input;
+            attribute.size = text.val();
+
+            // PK
+            $input = $this.find(".DBTypePK");
+            if ($input.prop('checked') === true)
+                attribute.PK = true;
+            else
+                attribute.PK = false;
+
+            // AutoIncrement
+            $input = $this.find(".DBTypeAutoIncrement");
+            if ($input.prop('checked') === true)
+                attribute.autoincrement = true;
+            else
+                attribute.autoincrement = false;
+
+            // FK
+            $input = $this.find(".DBTypeFK");
+            if ($input.prop('checked') === true)
+                attribute.FK = true;
+            else
+                attribute.FK = false;
+
+            // Referencing Entity
+            $input = $this.find(".DBReferencingEntity");
+            text = $input.val();
+            attribute.refEntity = text;
+
+            // Referencing Atrribute
+            $input = $this.find(".DBReferencingAttribute");
+            text = $input.val();
+            attribute.refAttribute = text;
+
+            // Add attribute to the list
+            dalAttributes.push(attribute);
+            attributeCount++;
+            if (attribute.PK) {
+                attributeCountPK++;
+            }
+            if (attribute.FK) {
+                attributeCountFK++;
+            }
+
+        });
+
+
+
+        // Get date
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+        if(dd<10) {
+            dd = '0'+dd
+        }
+        if(mm<10) {
+            mm = '0'+mm
+        }
+        today = mm + '/' + dd + '/' + yyyy;
+
+
+
+        $('#DivGeneratedContent').show();
+
+
         // T-SQL
         if ($('#RadioTSQL').prop('checked')) {
             $('#DivOutputTSQL').show();
@@ -238,7 +364,319 @@
         // MySQL
         if ($('#RadioMySQL').prop('checked')) {
             $('#DivOutputMySQL').show();
+            $('#TextareaMySQL').empty();
+
+            // Comments
+            $('#TextareaMySQL').append("/*\n");
+            $('#TextareaMySQL').append("Author:\t\t\tThis code was generated by DALGen Web available at https://dalgen.opendevtools.org\n");
+            $('#TextareaMySQL').append("Date:\t\t\t" + today + "\n");
+            $('#TextareaMySQL').append("Description:\t\tCreates the " + entityName + " table and respective stored procedures\n");
+            $('#TextareaMySQL').append("\n*/\n\n");
+
+            // Use database statement
+            $('#TextareaMySQL').append("USE " + dbName + ";");
+            $('#TextareaMySQL').append("\n\n");
+
+            // Drop existing objects with the same names
+            $('#TextareaMySQL').append("-- Overwrite existing objects that conflict. \n-- WARNING: To avoid loss of data please prepare a backup if necessary\n\n")
+            $('#TextareaMySQL').append("DROP TABLE IF EXISTS `" + dbName + "`.`" + entityName + "`;\n");
+            $('#TextareaMySQL').append("DROP PROCEDURE IF EXISTS `" + dbName + "`.`usp_" + entityName + "_LoadAll`;\n");
+            $('#TextareaMySQL').append("DROP PROCEDURE IF EXISTS `" + dbName + "`.`usp_" + entityName + "_Search`;\n");
+            $('#TextareaMySQL').append("DROP PROCEDURE IF EXISTS `" + dbName + "`.`usp_" + entityName + "_Add`;\n");
+            $('#TextareaMySQL').append("DROP PROCEDURE IF EXISTS `" + dbName + "`.`usp_" + entityName + "_Load`;\n");
+            $('#TextareaMySQL').append("DROP PROCEDURE IF EXISTS `" + dbName + "`.`usp_" + entityName + "_Delete`;\n");
+            $('#TextareaMySQL').append("DROP PROCEDURE IF EXISTS `" + dbName + "`.`usp_" + entityName + "_Update`;\n");
+            $('#TextareaMySQL').append("\n\n");
+
+            // ********************************
+            // Create table
+            // ********************************
+
+            $('#TextareaMySQL').append("-- Create Table \n");
+            $('#TextareaMySQL').append("\nCREATE TABLE `" + dbName + "`.`" + entityName + "` (\n");
+            // Add attributes
+            for (var i = 0; i < attributeCount; i++){
+                $('#TextareaMySQL').append(dalAttributes[i].name);
+                $('#TextareaMySQL').append(" " + dalAttributes[i].type);
+                if (enableDBSize(dalAttributes[i].type)) {
+                    $('#TextareaMySQL').append("(" + dalAttributes[i].size + ")");
+                }
+
+                if (dalAttributes[i].autoincrement) {
+                    $('#TextareaMySQL').append(" AUTO_INCREMENT");
+                }
+
+                if (i !== attributeCount - 1) {
+                    $('#TextareaMySQL').append(",\n");
+                }
+            }
+            // Add constraints
+            var count = 0;
+            for (var i = 0; i < attributeCount; i++){
+                if (dalAttributes[i].PK || dalAttributes[i].FK ) {
+
+                    if (count++ < attributeCountPK + attributeCountFK) {
+                        $('#TextareaMySQL').append(",");
+                    }
+                    $('#TextareaMySQL').append("\n");
+
+                    if (dalAttributes[i].PK) {
+                        $('#TextareaMySQL').append("CONSTRAINT pk_" + entityName + "_" + dalAttributes[i].name + " PRIMARY KEY (" + dalAttributes[i].name + ")");
+                    }
+
+                    if (dalAttributes[i].FK) {
+                        $('#TextareaMySQL').append("CONSTRAINT fk_" + entityName + "_" + dalAttributes[i].name + " FOREIGN KEY (" + dalAttributes[i].name + ") REFERENCES " + dalAttributes[i].refEntity + " (" + dalAttributes[i].refEntity + ")");
+                    }
+                }
+            }
+
+            $('#TextareaMySQL').append("\n);\n");
+            $('#TextareaMySQL').append("\n\n");
+
+            // ********************************
+            // Create default SCRUD sprocs for this table
+            // ********************************
+
+            // Load
+
+            $('#TextareaMySQL').append("DELIMITER //\n");
+            $('#TextareaMySQL').append("CREATE PROCEDURE `" + dbName + "`.`" + schemaName + "_" + entityName + "_Load`\n");
+            $('#TextareaMySQL').append("(\n");
+
+            count = 0;
+            for (var i = 0; i < attributeCount; i++) {
+                if (dalAttributes[i].PK) {
+                    $('#TextareaMySQL').append("\tIN param" + dalAttributes[i].name + " " + dalAttributes[i].type);
+
+                    if (enableDBSize(dalAttributes[i].type)) {
+                        $('#TextareaMySQL').append("(" + dalAttributes[i].size + ")");
+                    }
+
+                    if(++count < attributeCountPK) {
+                        $('#TextareaMySQL').append(",");
+                    }
+                    $('#TextareaMySQL').append("\n");
+                }
+            }
+
+            $('#TextareaMySQL').append(")\n");
+            $('#TextareaMySQL').append("BEGIN\n");
+            $('#TextareaMySQL').append("\tSELECT\n");
+            for (var i = 0; i < attributeCount; i++) {
+
+                $('#TextareaMySQL').append("\t\t`" + entityName + "`.`" + dalAttributes[i].name + "` AS `" + dalAttributes[i].name + "`");
+
+                if(++i < attributeCount) {
+                    $('#TextareaMySQL').append(",");
+                }
+                $('#TextareaMySQL').append("\n");
+            }
+            $('#TextareaMySQL').append("\tFROM `" + entityName + "`\n");
+            $('#TextareaMySQL').append("\tWHERE ");
+
+            count = 0;
+            for (var i = 0; i < attributeCount; i++) {
+                if (dalAttributes[i].PK) {
+                    $('#TextareaMySQL').append("`" + entityName + "`.`" + dalAttributes[i].name + "` = param" + dalAttributes[i].name);
+
+                    if(++count < attributeCountPK) {
+                        $('#TextareaMySQL').append("\n\t\tAND ");
+                    } else {
+                        $('#TextareaMySQL').append(";");
+                    }
+                    $('#TextareaMySQL').append("\n");
+                }
+            }
+            $('#TextareaMySQL').append("END //\n");
+            $('#TextareaMySQL').append("DELIMITER ;\n");
+            $('#TextareaMySQL').append("\n\n");
+
+            // LoadAll
+
+            $('#TextareaMySQL').append("DELIMITER //\n");
+            $('#TextareaMySQL').append("CREATE PROCEDURE `" + dbName + "`.`" + schemaName + "_" + entityName + "_LoadAll`\n");
+            $('#TextareaMySQL').append("(\n");
+            $('#TextareaMySQL').append(")\n");
+            $('#TextareaMySQL').append("BEGIN\n");
+            $('#TextareaMySQL').append("\tSELECT\n");
+            for (var i = 0; i < attributeCount; i++) {
+
+                $('#TextareaMySQL').append("\t\t`" + entityName + "`.`" + dalAttributes[i].name + "` AS `" + dalAttributes[i].name + "`");
+
+                if(++i < attributeCount) {
+                    $('#TextareaMySQL').append(",");
+                }
+                $('#TextareaMySQL').append("\n");
+            }
+            $('#TextareaMySQL').append("\tFROM `" + entityName + "`;\n");
+            $('#TextareaMySQL').append("END //\n");
+            $('#TextareaMySQL').append("DELIMITER ;\n");
+            $('#TextareaMySQL').append("\n\n");
+
+
+            // Add
+
+            $('#TextareaMySQL').append("DELIMITER //\n");
+            $('#TextareaMySQL').append("CREATE PROCEDURE `" + dbName + "`.`" + schemaName + "_" + entityName + "_Add`\n");
+            $('#TextareaMySQL').append("(\n");
+
+            count = 0;
+            for (var i = 0; i < attributeCount; i++) {
+                if (!dalAttributes[i].PK) {
+                    $('#TextareaMySQL').append("\tIN param" + dalAttributes[i].name + " " + dalAttributes[i].type);
+
+                    if (enableDBSize(dalAttributes[i].type)) {
+                        $('#TextareaMySQL').append("(" + dalAttributes[i].size + ")");
+                    }
+
+                    if(++count < attributeCount - attributeCountPK) {
+                        $('#TextareaMySQL').append(",");
+                    }
+                    $('#TextareaMySQL').append("\n");
+                }
+            }
+
+            $('#TextareaMySQL').append(")\n");
+            $('#TextareaMySQL').append("BEGIN\n");
+            $('#TextareaMySQL').append("\tINSERT INTO `" + entityName + "` (");
+            count = 0;
+            for (var i = 0; i < attributeCount; i++) {
+                if (!dalAttributes[i].PK) {
+                    $('#TextareaMySQL').append(dalAttributes[i].name);
+
+                    if(++count < attributeCount - attributeCountPK) {
+                        $('#TextareaMySQL').append(",");
+                    }
+                }
+            }
+            $('#TextareaMySQL').append(")\n");
+
+            $('#TextareaMySQL').append("\tVALUES (");
+
+            count = 0;
+            for (var i = 0; i < attributeCount; i++) {
+                if (!dalAttributes[i].PK) {
+                    $('#TextareaMySQL').append("param" + dalAttributes[i].name);
+
+                    if(++count < attributeCount - attributeCountPK) {
+                        $('#TextareaMySQL').append(",");
+                    }
+                }
+            }
+            $('#TextareaMySQL').append(");\n");
+
+            $('#TextareaMySQL').append("\t-- Return last inserted ID as result\n");
+            $('#TextareaMySQL').append("\tSELECT LAST_INSERT_ID() as id;\n");
+
+            $('#TextareaMySQL').append("END //\n");
+            $('#TextareaMySQL').append("DELIMITER ;\n");
+            $('#TextareaMySQL').append("\n\n");
+
+            // Update
+
+            $('#TextareaMySQL').append("DELIMITER //\n");
+            $('#TextareaMySQL').append("CREATE PROCEDURE `" + dbName + "`.`" + schemaName + "_" + entityName + "_Update`\n");
+            $('#TextareaMySQL').append("(\n");
+
+            count = 0;
+            for (var i = 0; i < attributeCount; i++) {
+                $('#TextareaMySQL').append("\tIN param" + dalAttributes[i].name + " " + dalAttributes[i].type);
+
+                if (enableDBSize(dalAttributes[i].type)) {
+                    $('#TextareaMySQL').append("(" + dalAttributes[i].size + ")");
+                }
+
+                if(++count < attributeCount - attributeCountPK) {
+                    $('#TextareaMySQL').append(",");
+                }
+                $('#TextareaMySQL').append("\n");
+            }
+
+            $('#TextareaMySQL').append(")\n");
+            $('#TextareaMySQL').append("BEGIN\n");
+            $('#TextareaMySQL').append("\tUPDATE `" + entityName + "`\n");
+
+            $('#TextareaMySQL').append("\tSET\n");
+            count = 0;
+            for (var i = 0; i < attributeCount; i++) {
+                if (!dalAttributes[i].PK) {
+                    $('#TextareaMySQL').append("\t\t" + dalAttributes[i].name + " = param" + dalAttributes[i].name);
+
+                    if(++count < attributeCount - attributeCountPK) {
+                        $('#TextareaMySQL').append(",");
+                    }
+                    $('#TextareaMySQL').append("\n");
+                }
+            }
+
+            $('#TextareaMySQL').append("\tWHERE \n");
+            count = 0;
+            for (var i = 0; i < attributeCount; i++) {
+                if (dalAttributes[i].PK) {
+                    $('#TextareaMySQL').append("\t\t" + dalAttributes[i].name + " = param" + dalAttributes[i].name);
+                    if (++count <  attributeCountPK) {
+                        $('#TextareaMySQL').append(" AND ")
+                    } else {
+                        $('#TextareaMySQL').append(";")
+                    }
+                    $('#TextareaMySQL').append("\n");
+                }
+            }
+
+            $('#TextareaMySQL').append("END //\n");
+            $('#TextareaMySQL').append("DELIMITER ;\n");
+            $('#TextareaMySQL').append("\n\n");
+
+            // Delete
+
+            $('#TextareaMySQL').append("DELIMITER //\n");
+            $('#TextareaMySQL').append("CREATE PROCEDURE `" + dbName + "`.`" + schemaName + "_" + entityName + "_Delete`\n");
+            $('#TextareaMySQL').append("(\n");
+
+            count = 0;
+            for (var i = 0; i < attributeCount; i++) {
+                if (dalAttributes[i].PK) {
+                    $('#TextareaMySQL').append("\tIN param" + dalAttributes[i].name + " " + dalAttributes[i].type);
+
+                    if (enableDBSize(dalAttributes[i].type)) {
+                        $('#TextareaMySQL').append("(" + dalAttributes[i].size + ")");
+                    }
+
+                    if(++count < attributeCountPK) {
+                        $('#TextareaMySQL').append(",");
+                    }
+                    $('#TextareaMySQL').append("\n");
+                }
+            }
+
+            $('#TextareaMySQL').append(")\n");
+            $('#TextareaMySQL').append("BEGIN\n");
+            $('#TextareaMySQL').append("\tDELETE FROM `" + entityName + "`\n");
+            $('#TextareaMySQL').append("\tWHERE ");
+
+            count = 0;
+            for (var i = 0; i < attributeCount; i++) {
+                if (dalAttributes[i].PK) {
+                    $('#TextareaMySQL').append("`" + entityName + "`.`" + dalAttributes[i].name + "` = param" + dalAttributes[i].name);
+
+                    if(++count < attributeCountPK) {
+                        $('#TextareaMySQL').append("\n\t\tAND ");
+                    } else {
+                        $('#TextareaMySQL').append(";");
+                    }
+                    $('#TextareaMySQL').append("\n");
+                }
+            }
+            $('#TextareaMySQL').append("END //\n");
+            $('#TextareaMySQL').append("DELIMITER ;\n");
+            $('#TextareaMySQL').append("\n\n");
+
+
+            // Search
+
+
         } else {
+            $('#TextareaMySQL').empty();
             $('#DivOutputMySQL').hide();
         }
 
@@ -285,7 +723,7 @@
         }
 
 
-        $('#DivGeneratedContent').show();
+
     }
 
     // ***************************************
@@ -325,7 +763,32 @@
     function getTSQLDropdown(){
 
         // Note, TSQL still needs to be implemented
-        return "<option value=\"0\">--Select One--</option>\n";
+        return "<option value=\"0\">--Select One--</option>\n" +
+            "<option value=\"1\">BIGINT</option>\n" +
+            "<option value=\"25\">BINARY</option>\n" +
+            "<option value=\"26\">BIT</option>\n" +
+            "<option value=\"3\">CHAR</option>\n" +
+            "<option value=\"4\">DATE</option>\n" +
+            "<option value=\"5\">DATETIME</option>\n" +
+            "<option value=\"27\">DATETIME2</option>\n" +
+            "<option value=\"28\">DATETIMEOFFSET</option>\n" +
+            "<option value=\"29\">DECIMAL</option>\n" +
+            "<option value=\"9\">FLOAT</option>\n" +
+            "<option value=\"30\">IMAGE</option>\n" +
+            "<option value=\"10\">INT</option>\n" +
+            "<option value=\"31\">MONEY</option>\n" +
+            "<option value=\"32\">NCHAR</option>\n" +
+            "<option value=\"33\">NTEXT</option>\n" +
+            "<option value=\"34\">NUMERIC</option>\n" +
+            "<option value=\"35\">NVARCHAR</option>\n" +
+            "<option value=\"36\">REAL</option>\n" +
+            "<option value=\"37\">SMALLDATETIME</option>\n" +
+            "<option value=\"17\">SMALLINT</option>\n" +
+            "<option value=\"38\">SMALLMONEY</option>\n" +
+            "<option value=\"18\">TEXT</option>\n" +
+            "<option value=\"21\">TINYINT</option>\n" +
+            "<option value=\"39\">VARBINARY</option>\n" +
+            "<option value=\"23\">VARCHAR</option>\n";
     }
 
     // Takes as input a DB Attribute dropdown value and returns the corresponding DateTypeString
@@ -379,6 +842,38 @@
                 return "VARCHAR";
             case "24":
                 return "YEAR";
+            case "25":
+                return "BINARY";
+            case "26":
+                return "BIT";
+            case "27":
+                return "DATETIME2";
+            case "28":
+                return "DATETIMEOFFSET";
+            case "29":
+                return "DECIMAL";
+            case "30":
+                return "IMAGE";
+            case "31":
+                return "MONEY";
+            case "32":
+                return "NCHAR";
+            case "33":
+                return "NTEXT";
+            case "34":
+                return "NUMERIC";
+            case "35":
+                return "NVARCHAR";
+            case "36":
+                return "REAL";
+            case "37":
+                return "SMALLDATETIME";
+            case "38":
+                return "SMALLMONEY";
+            case "39":
+                return "VARBINARY";
+
+
             default:
                 return "INVALID";
         }
@@ -598,13 +1093,13 @@
                     <div class="row mb-2">
                         <label for="attributeName" class="col-sm-4">Attribute Name:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="attributeName">
+                            <input type="text" class="form-control DBattributeName" name="attributeName">
                         </div>
                     </div>
                     <div class="row mb-2">
                         <label for="attributeType" class="col-sm-4">Attribute Type:</label>
                         <div class="col-sm-4">
-                            <select class="form-control dbtype" name="attributeType">
+                            <select class="form-control DBtype" name="attributeType">
                                 <option value="0">--Select One--</option>
                                 <option value="1">BIGINT</option>
                                 <option value="2">BLOB</option>
@@ -635,7 +1130,7 @@
                         </div>
                         <label for="attributeSize" class="col-sm-2">Attribute Size:</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control dbsize" name="attributeSize" disabled="disabled">
+                            <input type="text" class="form-control DBsize" name="attributeSize" disabled="disabled">
                         </div>
                     </div>
                 </div>
@@ -661,8 +1156,7 @@
                     <input type="text" class="form-control DBReferencingAttribute" name="referencingAttribute" disabled="disabled">
                 </div>
             </div>
-
-
+            <div class="col-lg-12"><hr></div>
         </div>
         -->
         <!-- End Generic Property Design -->
