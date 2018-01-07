@@ -17,7 +17,7 @@ include_once("DAL/ForumCategory.php");
 
 $errorMessage = "";
 $userId = SessionManager::getUserId();
-if (false )// !Authentication::hasPermission($userId,Permission::ManageForum))
+if (!Authentication::hasPermission($userId,Permission::ManageForum))
 {
     header("location: /forumhome");
 }
@@ -59,7 +59,7 @@ else
     <div class="row">
         <div class="col-lg-12 mb-4 mt-4">
             <br/><br/>
-            <h3>Forum Entry</h3> <small></small>
+            <h3>Create Thread</h3> <small></small>
             <br/>
             <?php
             if ($errorMessage != "")
@@ -85,8 +85,8 @@ else
                     </div>
                     <div class="control-group form-group col-lg-6 ">
                         <div class="controls">
-                            <strong>Forum Category</strong>
-                            <small>Please Select a the category that your forum falls under.</small>
+                            <strong>Thread Category</strong>
+                            <small>Please Select a the category that your thread falls under.</small>
                             <select name="forumcategory" id="forumcategory" class="form-control">
                                 <option>--Select Category--</option>
 

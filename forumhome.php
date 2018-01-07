@@ -95,7 +95,7 @@ if (isset($_GET['page'])) {
             if (Authentication::hasPermission($userId,Permission::ManageForum))
             {
                 echo "<div class =\"text-center\">";
-                echo "<a href=\"create-forum\" class =\"btn btn-primary btn-lg btn-block\"><i class=\"\"></i>Create Forum</a>";
+                echo "<a href=\"create-forum\" class =\"btn btn-primary btn-lg btn-block\"><i class=\"\"></i>Create Thread</a>";
                 echo "</div>";
                 echo "<br>";
             }

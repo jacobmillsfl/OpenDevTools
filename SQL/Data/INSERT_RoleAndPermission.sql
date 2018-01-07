@@ -8,6 +8,7 @@ Description: Create new role for Restricted
 
 use opendevtools;
 
+/*
 -- Create new role for Restricted user
 INSERT INTO userrole(name,description)
 VALUES("Restricted","This user should have limited functionality");
@@ -52,6 +53,8 @@ VALUES (3,3); -- Moderator, CommentBlog
 INSERT INTO roletopermission(userroleid,permissionid)
 VALUES (4,3); -- Admin, CommentBlog
 
+
+*/
 
 
 INSERT INTO permission (name,description,createdate)
