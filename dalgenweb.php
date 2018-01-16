@@ -312,6 +312,16 @@
             else
                 attribute.FK = false;
 
+            // CastToDate
+            if(castToDate(attribute.type)) {
+                attribute.castToDate = true;
+            } else {
+                attribute.castToDate = false;
+            }
+
+            // DefaultValue
+            attribute.defaultVal = getDataTypeDefaultValue(attribute.type);
+
             // Referencing Entity
             $input = $this.find(".DBReferencingEntity");
             text = $input.val();
@@ -333,7 +343,6 @@
             }
 
         });
-
 
 
         // Get date
@@ -380,12 +389,12 @@
             // Drop existing objects with the same names
             $('#TextareaMySQL').append("-- Overwrite existing objects that conflict. \n-- WARNING: To avoid loss of data please prepare a backup if necessary\n\n")
             $('#TextareaMySQL').append("DROP TABLE IF EXISTS `" + dbName + "`.`" + entityName + "`;\n");
-            $('#TextareaMySQL').append("DROP PROCEDURE IF EXISTS `" + dbName + "`.`usp_" + entityName + "_LoadAll`;\n");
-            $('#TextareaMySQL').append("DROP PROCEDURE IF EXISTS `" + dbName + "`.`usp_" + entityName + "_Search`;\n");
-            $('#TextareaMySQL').append("DROP PROCEDURE IF EXISTS `" + dbName + "`.`usp_" + entityName + "_Add`;\n");
-            $('#TextareaMySQL').append("DROP PROCEDURE IF EXISTS `" + dbName + "`.`usp_" + entityName + "_Load`;\n");
-            $('#TextareaMySQL').append("DROP PROCEDURE IF EXISTS `" + dbName + "`.`usp_" + entityName + "_Delete`;\n");
-            $('#TextareaMySQL').append("DROP PROCEDURE IF EXISTS `" + dbName + "`.`usp_" + entityName + "_Update`;\n");
+            $('#TextareaMySQL').append("DROP PROCEDURE IF EXISTS `" + dbName + "`.`" + schemaName + "_" + entityName + "_LoadAll`;\n");
+            $('#TextareaMySQL').append("DROP PROCEDURE IF EXISTS `" + dbName + "`.`" + schemaName + "_" + entityName + "_Search`;\n");
+            $('#TextareaMySQL').append("DROP PROCEDURE IF EXISTS `" + dbName + "`.`" + schemaName + "_" + entityName + "_Add`;\n");
+            $('#TextareaMySQL').append("DROP PROCEDURE IF EXISTS `" + dbName + "`.`" + schemaName + "_" + entityName + "_Load`;\n");
+            $('#TextareaMySQL').append("DROP PROCEDURE IF EXISTS `" + dbName + "`.`" + schemaName + "_" + entityName + "_Delete`;\n");
+            $('#TextareaMySQL').append("DROP PROCEDURE IF EXISTS `" + dbName + "`.`" + schemaName + "_" + entityName + "_Update`;\n");
             $('#TextareaMySQL').append("\n\n");
 
             // ********************************
@@ -425,7 +434,7 @@
                     }
 
                     if (dalAttributes[i].FK) {
-                        $('#TextareaMySQL').append("CONSTRAINT fk_" + entityName + "_" + dalAttributes[i].name + " FOREIGN KEY (" + dalAttributes[i].name + ") REFERENCES " + dalAttributes[i].refEntity + " (" + dalAttributes[i].refEntity + ")");
+                        $('#TextareaMySQL').append("CONSTRAINT fk_" + entityName + "_" + dalAttributes[i].name + " FOREIGN KEY (" + dalAttributes[i].name + ") REFERENCES " + dalAttributes[i].refEntity + " (" + dalAttributes[i].refAttribute + ")");
                     }
                 }
             }
@@ -466,7 +475,7 @@
 
                 $('#TextareaMySQL').append("\t\t`" + entityName + "`.`" + dalAttributes[i].name + "` AS `" + dalAttributes[i].name + "`");
 
-                if(++i < attributeCount) {
+                if(i < attributeCount - 1) {
                     $('#TextareaMySQL').append(",");
                 }
                 $('#TextareaMySQL').append("\n");
@@ -503,7 +512,7 @@
 
                 $('#TextareaMySQL').append("\t\t`" + entityName + "`.`" + dalAttributes[i].name + "` AS `" + dalAttributes[i].name + "`");
 
-                if(++i < attributeCount) {
+                if(i < attributeCount - 1) {
                     $('#TextareaMySQL').append(",");
                 }
                 $('#TextareaMySQL').append("\n");
@@ -586,7 +595,7 @@
                     $('#TextareaMySQL').append("(" + dalAttributes[i].size + ")");
                 }
 
-                if(++count < attributeCount - attributeCountPK) {
+                if(i < attributeCount - 1) {
                     $('#TextareaMySQL').append(",");
                 }
                 $('#TextareaMySQL').append("\n");
@@ -673,6 +682,83 @@
 
 
             // Search
+
+            $('#TextareaMySQL').append("DELIMITER //\n");
+            $('#TextareaMySQL').append("CREATE PROCEDURE `" + dbName + "`.`" + schemaName + "_" + entityName + "_Search`\n");
+            $('#TextareaMySQL').append("(\n");
+
+            for (var i = 0; i < attributeCount; i++) {
+                $('#TextareaMySQL').append("\tIN param" + dalAttributes[i].name + " " + dalAttributes[i].type);
+
+                if (enableDBSize(dalAttributes[i].type)) {
+                    $('#TextareaMySQL').append("(" + dalAttributes[i].size + ")");
+                }
+
+                if(i < attributeCount - 1) {
+                    $('#TextareaMySQL').append(",");
+                }
+                $('#TextareaMySQL').append("\n");
+            }
+
+            $('#TextareaMySQL').append(")\n");
+            $('#TextareaMySQL').append("BEGIN\n");
+            $('#TextareaMySQL').append("\tSELECT\n");
+            for (var i = 0; i < attributeCount; i++) {
+
+                $('#TextareaMySQL').append("\t\t`" + entityName + "`.`" + dalAttributes[i].name + "` AS `" + dalAttributes[i].name + "`");
+
+                if(i < attributeCount - 1) {
+                    $('#TextareaMySQL').append(",");
+                }
+                $('#TextareaMySQL').append("\n");
+            }
+            $('#TextareaMySQL').append("\tFROM `" + entityName + "`\n");
+
+            $('#TextareaMySQL').append("\tWHERE \n\t\t");
+            count = 0;
+            for (var i = 0; i < attributeCount; i++) {
+                // LEFT SIDE
+                if (dalAttributes[i].castToDate) {
+                    $('#TextareaMySQL').append("COALESCE(CAST(`" + entityName + "`.`" + dalAttributes[i].name + "` AS DATE)," + dalAttributes[i].defaultVal);
+                }
+                else {
+                    $('#TextareaMySQL').append("COALESCE(`" + entityName + "`.`" + dalAttributes[i].name + "`," + dalAttributes[i].defaultVal);
+                }
+
+                $('#TextareaMySQL').append(")");
+
+                // COMPARISON OPERATOR
+                if (isString(dalAttributes[i].type)) {
+                    $('#TextareaMySQL').append(" IS LIKE ");
+
+                    // RIGHT SIDE
+                    $('#TextareaMySQL').append("COALESCE(CONCAT('%', param" + dalAttributes[i].name + ", '%'),`" + entityName + "`.`" + dalAttributes[i].name + "`," + dalAttributes[i].defaultVal);
+
+                } else {
+                    $('#TextareaMySQL').append(" = ");
+
+                    // RIGHT SIDE
+                    if (dalAttributes[i].castToDate) {
+                        $('#TextareaMySQL').append("COALESCE(CAST(param" + dalAttributes[i].name + " AS DATE),CAST(`" + entityName + "`.`" + dalAttributes[i].name + "` AS DATE)," + dalAttributes[i].defaultVal);
+                    }
+                    else {
+                        $('#TextareaMySQL').append("COALESCE(param" + dalAttributes[i].name + ",`" + entityName + "`.`" + dalAttributes[i].name + "`," + dalAttributes[i].defaultVal);
+                    }
+                }
+
+                $('#TextareaMySQL').append(")");
+
+
+                if (i < attributeCount - 1) {
+                    $('#TextareaMySQL').append("\n\t\t AND ");
+                } else {
+                    $('#TextareaMySQL').append(";\n");
+                }
+            }
+
+            $('#TextareaMySQL').append("END //\n");
+            $('#TextareaMySQL').append("DELIMITER ;\n");
+            $('#TextareaMySQL').append("\n\n");
 
 
         } else {
@@ -892,6 +978,56 @@
             case "DECIMAL":
             case "NUMERIC":
             case "FLOAT":
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    // This function is used to determine if a datatype can be safely casted to a DATE to optimize search functionality
+    function castToDate(input) {
+        switch (input){
+            case "DATETIME":
+            case "DATETIME2":
+            case "SMALLDATETIME":
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    // This function returns a string representing the default value of the given DataType
+    function getDataTypeDefaultValue(datatype,defaultVal = "''") {
+        switch (datatype){
+            case "INT":
+            case "BIGINT":
+            case "FLOAT":
+            case "DECIMAL":
+            case "MONEY":
+            case "NUMERIC":
+            case "SMALLINT":
+            case "MEDIUMINT":
+            case "SMALLMONEY":
+            case "TINYINT":
+            case "REAL":
+                return "0";
+            default:
+                return defaultVal;
+        }
+    }
+
+    // Determine if the datatype is a string
+    function isString(value) {
+        switch (value) {
+            case "CHAR":
+            case "LONGTEXT":
+            case "MEDIUMTEXT":
+            case "TEXT":
+            case "TINYTEXT":
+            case "VARCHAR":
+            case "NCHAR":
+            case "NTEXT":
+            case "NVARCHAR":
                 return true;
             default:
                 return false;
